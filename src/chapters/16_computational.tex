@@ -107,6 +107,111 @@ coefficient---turns a self-limiting excursion into a Chernobyl-like runaway. The
 sign of the feedback is, numerically as well as physically, the whole story.}
 
 
+
+\section{Stiffness and absolute stability}
+\label{sec:stiffness}
+
+The point-kinetics generator $\mathbf M$ has eigenvalues spanning
+$|s_0|\sim\lambda_i\sim10^{-2}$--$10^{0}\unit{s^{-1}}$ up to
+$|s_G|\sim\beta/\Lambda\sim10^{3}\unit{s^{-1}}$, a \emph{stiffness ratio}
+\begin{equation}
+S=\frac{\max_j|\Re s_j|}{\min_j|\Re s_j|}\sim\frac{\beta/\Lambda}{\lambda_1}
+\sim10^{5}\text{--}10^{6}.
+\end{equation}
+An explicit method applied to a mode $\dot y=s y$ is stable only if $hs$ lies in
+its bounded region of absolute stability; for forward Euler this requires
+$h<2/|s_G|\sim2\Lambda\sim10^{-5}\unit{s}$, prohibitively small. Implicit methods
+remove this restriction.
+
+\begin{definition}[A- and L-stability]
+A one-step method with stability function $R(z)$ (the amplification for
+$\dot y=sy$, $z=hs$) is \emph{A-stable} if its stability region contains the entire
+left half-plane, $|R(z)|\le1$ for all $\Re z\le0$. It is \emph{L-stable} if in
+addition $R(z)\to0$ as $\Re z\to-\infty$ (rapid damping of the stiffest modes).
+\end{definition}
+
+\begin{theorem}[$\theta$-method stability]
+\label{thm:theta}
+The $\theta$-method $y_{n+1}=y_n+h[(1-\theta)f_n+\theta f_{n+1}]$ has
+$R(z)=\dfrac{1+(1-\theta)z}{1-\theta z}$. It is A-stable iff $\theta\ge\tfrac12$;
+the trapezoidal rule $\theta=\tfrac12$ is A-stable but not L-stable
+($R(-\infty)=-1$), while backward Euler $\theta=1$ is L-stable
+($R(-\infty)=0$).
+\end{theorem}
+\begin{proof}
+Apply the method to $\dot y=sy$: $y_{n+1}=R(z)y_n$ with the stated $R$. For
+$\Re z\le0$, $|R(z)|\le1\iff|1+(1-\theta)z|\le|1-\theta z|$; squaring and
+simplifying gives $(1-2\theta)|z|^2\le -2\Re z\,(\,\cdot\,)$ which holds for all
+$\Re z\le0$ iff $1-2\theta\le0$, i.e.\ $\theta\ge\tfrac12$. The limits
+$R(-\infty)=(\theta-1)/\theta$ give $-1$ at $\theta=\tfrac12$ and $0$ at
+$\theta=1$.
+\end{proof}
+
+The backward-differentiation formulas (BDF$k$) used by production solvers (e.g.\
+LSODA, CVODE) are $A(\alpha)$-stable up to order $6$ and L-stable at orders $1$--$2$;
+their use is what makes the figures of this book reproducible at large step sizes.
+
+\section{Exponential and operator-splitting integrators}
+\label{sec:expint}
+
+Because the point-kinetics block is \emph{linear} in $\mathbf y$ for fixed $\rho$,
+the exact one-step propagator over an interval of constant reactivity is the matrix
+exponential
+\begin{equation}
+\mathbf y_{n+1}=e^{\mathbf M(\rho_n)\,h}\,\mathbf y_n,
+\label{eq:expprop}
+\end{equation}
+which is unconditionally stable and exact for piecewise-constant $\rho$ (the
+``analytic-within-a-step'' / PCA method). For time-varying $\rho$ the
+piecewise-constant approximation incurs a local error $\mathcal O(h^2\dot\rho)$.
+The action $e^{\mathbf M h}\mathbf v$ need not be formed densely; Krylov-subspace
+methods compute it in $\mathcal O(m)$ matvecs via
+$e^{\mathbf M h}\mathbf v\approx\|\mathbf v\|\,V_m e^{H_m h}e_1$, where $(V_m,H_m)$
+is the Arnoldi factorisation of $\mathbf M$~\cite{molervanloan}.
+
+For the \emph{coupled} neutronic--thermal system, Strang operator splitting advances
+the neutronic flow $\Phi^N$ and thermal flow $\Phi^T$ as
+\begin{equation}
+\mathbf y_{n+1}=\Phi^N_{h/2}\circ\Phi^T_{h}\circ\Phi^N_{h/2}\,\mathbf y_n,
+\end{equation}
+with global error $\mathcal O(h^2)$ provided each sub-flow is solved at least to
+second order; the splitting error is governed by the commutator $[\mathbf
+M_N,\mathbf M_T]$ and vanishes when the blocks commute.
+
+\section{Error bounds via the logarithmic norm}
+\label{sec:lognorm}
+
+Classical Lipschitz error bounds are useless for stiff systems (the Lipschitz
+constant is $\sim|s_G|$). The sharp tool is the \emph{logarithmic norm}
+$\mu(\mathbf M)=\lim_{h\to0^+}(\|\mathbf I+h\mathbf M\|-1)/h$; in the $2$-norm
+$\mu_2(\mathbf M)=\lambda_{\max}\!\big(\tfrac12(\mathbf M+\mathbf M^{\!\top})\big)$.
+
+\begin{theorem}[One-sided error bound]
+\label{thm:lognorm}
+If the exact and numerical flows satisfy $\dot{\mathbf x}=\mathbf M\mathbf x$ with
+local truncation error $\boldsymbol\tau_n$, the global error
+$\mathbf e_n=\mathbf x_n-\mathbf x(t_n)$ obeys
+\begin{equation}
+\|\mathbf e_n\|\le e^{\mu(\mathbf M)\,t_n}\|\mathbf e_0\|
++\sum_{k=1}^{n}e^{\mu(\mathbf M)(t_n-t_k)}\|\boldsymbol\tau_k\|.
+\end{equation}
+\end{theorem}
+\begin{proof}[Sketch]
+From $\dot{\mathbf e}=\mathbf M\mathbf e+\boldsymbol\tau$, the differential
+inequality $\dfrac{\dd}{\dd t}\|\mathbf e\|\le\mu(\mathbf M)\|\mathbf
+e\|+\|\boldsymbol\tau\|$ holds because
+$\dfrac{\dd}{\dd t}\|\mathbf e\|\le\mu(\mathbf M)\|\mathbf e\|$ for the homogeneous
+part; Gr\"onwall's inequality then yields the bound.
+\end{proof}
+
+The bound is informative precisely when $\mu(\mathbf M)$ is small or negative
+(stable, damped dynamics) even though $\|\mathbf M\|$ is enormous; for a
+prompt-critical excursion $\mu(\mathbf M)>0$ and the bound correctly predicts
+exponential error growth---a quantitative warning that fast excursions demand
+tight tolerances. This B-convergence framework~\cite{hairerwanner} is the modern
+foundation for trusting stiff reactor-kinetics solvers.
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]

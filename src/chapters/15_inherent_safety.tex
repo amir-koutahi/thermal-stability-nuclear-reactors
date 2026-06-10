@@ -100,6 +100,127 @@ loss-of-flow-without-scram test is the positive mirror image of Chernobyl:
 inherent negative feedback turning a would-be accident into a non-event.}
 
 
+
+\section{The quasi-static reactivity balance and integral safety parameters}
+\label{sec:qsrb}
+
+The qualitative claim that inherent feedback ``shuts the reactor down'' can be made
+quantitative through the \emph{quasi-static reactivity balance} (QSRB) of Wade and
+Fujita, the analytical backbone of metal-fuelled fast-reactor passive safety. For
+transients slow compared with the prompt and delayed-neutron timescales, the
+reactor passes through a sequence of near-critical states in which the net
+reactivity is approximately zero. Writing $\tilde P=P/P_0$ for normalised power and
+$\tilde F=F/F_0$ for normalised flow, the asymptotic balance reads
+\begin{equation}
+0=\delta\rho_{\rm ext}+(\tilde P-1)\,A+\Big(\tfrac{\tilde P}{\tilde F}-1\Big)B
+   +\delta T_{\rm in}\,C,
+\label{eq:qsrb}
+\end{equation}
+where the \emph{integral reactivity parameters} are
+\begin{equation}
+A=P_0\frac{\partial\rho}{\partial P}\ (\text{power coefficient}\times P_0),\quad
+B=\text{power/flow coefficient},\quad
+C=\frac{\partial\rho}{\partial T_{\rm in}}\ (\text{inlet-temperature coefficient}),
+\end{equation}
+with $A<0$ (Doppler $+$ axial fuel expansion) and $B<0$ (coolant-density/radial
+expansion) for an inherently safe core. Equation \eqref{eq:qsrb} compresses all the
+feedbacks of Chapter~\ref{ch:feedback} into three measurable integral numbers.
+
+\begin{proposition}[Asymptotic power of an unprotected loss of flow]
+\label{prop:ulof}
+For an unprotected loss-of-flow transient (ULOF: $\delta\rho_{\rm ext}=0$,
+$\delta T_{\rm in}=0$, flow decaying to $\tilde F<1$) the asymptotic power is
+\begin{equation}
+\tilde P_\infty=\frac{A+B}{A+B/\tilde F},
+\end{equation}
+which satisfies $0<\tilde P_\infty<1$ whenever $A,B<0$; the core settles to a
+reduced power without scram. The asymptotic coolant temperature rise across the
+core obeys $\Delta T_c^\infty/\Delta T_c^0=\tilde P_\infty/\tilde F$.
+\end{proposition}
+\begin{proof}
+Set $\delta\rho_{\rm ext}=\delta T_{\rm in}=0$ in \eqref{eq:qsrb}:
+$(\tilde P-1)A+(\tilde P/\tilde F-1)B=0$, i.e.\ $\tilde P(A+B/\tilde F)=A+B$, giving
+$\tilde P_\infty$. With $A,B<0$ and $0<\tilde F<1$, both numerator and denominator
+are negative and the denominator is larger in magnitude, so
+$0<\tilde P_\infty<1$. The temperature ratio follows from
+$\Delta T_c\propto P/F$.
+\end{proof}
+
+The dimensionless ratios $A/B$ and $C\,\Delta T_c/A$ are the modern \emph{passive
+safety metrics}: a design with $A/B\approx1$ and small $|C\,\Delta T_c/A|$ rides
+out the unprotected ULOF, ULOHS (loss of heat sink), and UTOP (transient
+overpower) accidents with asymptotic temperatures below failure limits---the
+analytic statement of the EBR-II demonstrations.
+
+\section{Passive decay-heat removal: natural-circulation scaling}
+\label{sec:natcirc}
+
+Passive cooling replaces pumps with buoyancy. In a closed loop of thermal-centre
+elevation difference $\Delta z$, the buoyancy head balances friction:
+\begin{equation}
+\underbrace{\rho_0\,\beta_{\rm th}\,g\,\Delta z\,\Delta T_{\rm loop}}_{\text{buoyancy}}
+=\underbrace{R_f\,\dot m^2}_{\text{friction}},\qquad
+R_f=\frac{1}{2\rho_0 A_{\rm fl}^2}\Big(\frac{fL}{D}+\textstyle\sum K\Big),
+\end{equation}
+with $\beta_{\rm th}$ the thermal expansion coefficient and
+$\Delta T_{\rm loop}=Q/(\dot m c_p)$ the loop temperature rise carrying power $Q$.
+
+\begin{proposition}[One-third power law]
+\label{prop:natcirc}
+Eliminating $\Delta T_{\rm loop}$ gives the natural-circulation mass flow and
+temperature rise
+\begin{equation}
+\dot m=\Big(\frac{\rho_0\beta_{\rm th}g\Delta z}{c_p R_f}\Big)^{1/3}Q^{1/3},
+\qquad
+\Delta T_{\rm loop}=\frac{Q}{c_p\dot m}\propto Q^{2/3}.
+\end{equation}
+Hence the coolant temperature rise grows only as $Q^{2/3}$: as decay heat falls
+after shutdown, natural circulation self-adjusts and the temperature rise decays
+sublinearly, the quantitative basis of multi-day passive grace periods.
+\end{proposition}
+\begin{proof}
+Substitute $\Delta T_{\rm loop}=Q/(\dot m c_p)$ into the head--friction balance:
+$\rho_0\beta_{\rm th}g\Delta z\,Q/(\dot m c_p)=R_f\dot m^2$, so
+$\dot m^3=\rho_0\beta_{\rm th}g\Delta z\,Q/(c_p R_f)$, giving the stated
+$\dot m\propto Q^{1/3}$ and therefore $\Delta T_{\rm loop}=Q/(c_p\dot m)\propto
+Q/Q^{1/3}=Q^{2/3}$.
+\end{proof}
+
+\section{Conduction-cooled cores and the radiative walk-away criterion}
+\label{sec:walkaway}
+
+In a high-temperature gas or microreactor core with no active cooling, decay heat
+leaves by conduction to the vessel and thence by radiation to a passive heat sink.
+Modelling the vessel as a grey radiator of area $A_s$ and emissivity
+$\varepsilon$, energy balance at the quasi-steady decay power $P_d$ gives
+\begin{equation}
+\varepsilon\sigma A_s\big(T_{\rm eq}^4-T_{\rm amb}^4\big)=P_d
+\ \Longrightarrow\
+T_{\rm eq}=\Big(\frac{P_d}{\varepsilon\sigma A_s}+T_{\rm amb}^4\Big)^{1/4}.
+\label{eq:radeq}
+\end{equation}
+Adding the internal conduction rise from a distributed source $q'''$ across a core
+of conductivity $k$ and characteristic radius $R$ (cylindrical, parabolic profile)
+$\Delta T_{\rm cond}=q''' R^2/(4k)=P_d/(8\pi k H)$ for height $H$, the peak fuel
+temperature is $T_{\max}=T_{\rm eq}+\Delta T_{\rm cond}$.
+
+\begin{definition}[Walk-away-safe core]
+A core is \emph{walk-away safe} against a complete, unmitigated loss of cooling if
+its peak passive temperature satisfies $T_{\max}<T_{\rm fail}$, where
+$T_{\rm fail}$ is the fuel-failure temperature (e.g.\ $\sim1600\degC$ for TRISO
+fuel). By \eqref{eq:radeq} this requires the power density to be low enough that
+$T_{\rm eq}+P_d/(8\pi k H)<T_{\rm fail}$, a constraint that scales favourably as
+core size shrinks ($A_s/V$ rises), explaining the passive safety of small modular
+and micro-reactors.
+\end{definition}
+
+Because $T_{\rm eq}\propto P_d^{1/4}$ while the failure margin is fixed, the
+walk-away criterion is fundamentally a \emph{power-density} limit: it caps the
+admissible $P_d/A_s$, and through the decay-heat fraction (Chapter~\ref{ch:decay}),
+the admissible operating power density---a recurring constraint in Generation-IV
+design optimisation~\cite{waltar}.
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]

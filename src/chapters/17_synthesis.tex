@@ -85,6 +85,78 @@ something simple: build reactors whose own nature opposes their excursions, and
 never operate a reactor in a state where that nature is reversed.
 
 
+
+\section{A dimensionless formulation and the master stability inequality}
+\label{sec:dimensionless}
+
+The recurring results of this book collapse into a single dimensionless statement.
+Nondimensionalise the one-temperature feedback model (\S\ref{sec:statespace}) with
+$\hat t=\lambda t$, normalised power $p=P/P_0$, and scaled temperature
+$\vartheta=(T-T_0)/\Delta T_{\rm ref}$, $\Delta T_{\rm ref}=P_0/(\mu\lambda)$.
+Three dimensionless groups emerge:
+\begin{equation}
+\epsilon=\frac{\Lambda\lambda}{\beta}\ (\text{prompt-to-delayed ratio}),\quad
+\mathcal D=\frac{|\alpha|\,P_0}{\mu\lambda\,\beta}\ (\text{Doppler/feedback number}),\quad
+\Theta=\frac{\theta}{\lambda}\ (\text{cooling-to-decay ratio}),
+\end{equation}
+where $\epsilon\sim10^{-3}$ is tiny (delayed neutrons dominate),
+$\mathcal D$ measures feedback strength in dollars per reference temperature, and
+$\Theta$ compares heat removal to precursor decay.
+
+\begin{theorem}[Master stability inequality]
+\label{thm:master}
+In the dimensionless variables the critical-equilibrium Jacobian has characteristic
+polynomial $\hat s^3+\hat a_1\hat s^2+\hat a_2\hat s+\hat a_3$ with
+$\hat a_3=\operatorname{sign}(\alpha)\,\mathcal D\,\Theta$. The operating point is
+asymptotically stable if and only if
+\begin{equation}
+\boxed{\ \alpha<0\quad\text{and}\quad \mathcal D>0,\ \Theta>0\ }
+\end{equation}
+i.e.\ the feedback is negative and both the feedback and cooling are nonzero;
+equivalently $\hat a_3>0$ together with the Routh--Hurwitz product
+$\hat a_1\hat a_2>\hat a_3$, which holds automatically when $\alpha<0$. The single
+controlling parameter is therefore the \emph{sign of} $\mathcal D$ inherited from
+$\alpha$.
+\end{theorem}
+\begin{proof}
+Nondimensionalising $\mathbf A$ of \S\ref{sec:statespace} rescales each coefficient
+of the characteristic polynomial by positive factors, preserving the signs;
+$\hat a_3\propto-\alpha$ as in \eqref{eq:rh-coeffs}. Proposition~\ref{prop:stab}
+then applies verbatim: stability $\iff\alpha<0$.
+\end{proof}
+
+Theorem~\ref{thm:master} is the book in one line: across six orders of magnitude in
+timescale and every chapter of physics, linear stability of the operating point is
+controlled by the sign of a single dimensionless feedback number. The Chernobyl
+state had $\mathcal D<0$ (effective $\alpha>0$ from the positive void coefficient),
+placing it on the unstable side of the boxed inequality.
+
+\section{Open problems and directions}
+\label{sec:open}
+
+The reduced models of this book invite several graduate-level extensions, each an
+active research direction:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Spatial kinetics.} Replacing point kinetics with the time-dependent
+multigroup transport (or $SP_3$/diffusion) equations coupled to subchannel
+thermal-hydraulics; the relevant stability object is the spectrum of an
+infinite-dimensional operator, and modal (lambda-mode) reduction connects it to the
+finite analysis here.
+\item \textbf{Circulating-fuel reactors.} In molten-salt reactors the precursors
+drift with the fuel, modifying \eqref{eq:prk} to a delay/advection system
+$\dot C_i=\beta_i p/\Lambda-\lambda_iC_i-C_i/\tau_{\rm loop}+C_i(t-\tau_{\rm loop})e^{-\lambda_i\tau_{\rm loop}}$,
+whose effective $\beta$ is reduced---a genuinely different stability problem.
+\item \textbf{Stochastic kinetics.} At low power the discrete neutron number makes
+the master equation, not the ODE, fundamental; the stability of moments and the
+$\alpha$-Feynman / Rossi variance methods quantify fluctuations.
+\item \textbf{Robust and nonlinear control.} Treating $\alpha$, $\Lambda$, and the
+thermal parameters as uncertain leads to $\mu$-synthesis and Lyapunov-based bounds
+on the guaranteed stability margin over the operating envelope.
+\end{itemize}
+These carry the linear, lumped theory of this book toward the high-fidelity,
+uncertainty-aware models used in contemporary reactor-safety research.
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]
