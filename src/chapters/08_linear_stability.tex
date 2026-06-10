@@ -130,6 +130,107 @@ must hold across all power levels and cycle conditions---a requirement the RBMK
 violated at low power.}
 
 
+
+\section{State-space form and the Routh--Hurwitz criterion}
+\label{sec:statespace}
+
+To make ``stability'' fully explicit, reduce to the one-precursor,
+one-temperature model that retains the essential feedback physics:
+\begin{equation}
+\dot n=\frac{\rho-\beta}{\Lambda}n+\lambda C,\quad
+\dot C=\frac{\beta}{\Lambda}n-\lambda C,\quad
+\dot T=\frac{n}{\mu}-\theta T,\quad \rho=\rho_0+\alpha T,
+\end{equation}
+with heat capacity $\mu>0$, cooling rate $\theta>0$, and feedback coefficient
+$\alpha$. Linearising about the critical equilibrium $(n_0,C_0,T_0)$ with
+$\rho_0=0$ gives the Jacobian
+\begin{equation}
+\mathbf A=
+\begin{pmatrix}
+-\dfrac{\beta}{\Lambda} & \lambda & \dfrac{\alpha n_0}{\Lambda}\\[5pt]
+\dfrac{\beta}{\Lambda} & -\lambda & 0\\[5pt]
+\dfrac{1}{\mu} & 0 & -\theta
+\end{pmatrix},
+\end{equation}
+whose characteristic polynomial is $\det(s\mathbf I-\mathbf A)=s^3+a_1s^2+a_2s+a_3$
+with
+\begin{equation}
+a_1=\lambda+\theta+\frac{\beta}{\Lambda},\quad
+a_2=\theta\Big(\lambda+\frac{\beta}{\Lambda}\Big)-\frac{\alpha n_0}{\Lambda\mu},\quad
+a_3=-\frac{\alpha n_0\lambda}{\Lambda\mu}.
+\label{eq:rh-coeffs}
+\end{equation}
+
+\begin{theorem}[Routh--Hurwitz, cubic]
+\label{thm:rh}
+The polynomial $s^3+a_1s^2+a_2s+a_3$ (real coefficients) has all roots in the open
+left half-plane if and only if $a_1>0$, $a_3>0$, and $a_1a_2>a_3$.
+\end{theorem}
+
+\begin{proposition}[Feedback sign decides stability]
+\label{prop:stab}
+With $\lambda,\theta,\beta,\Lambda,\mu,n_0>0$, the equilibrium is asymptotically
+stable if and only if $\alpha<0$.
+\end{proposition}
+\begin{proof}
+By \eqref{eq:rh-coeffs}, $a_1>0$ always. Now $a_3=-\alpha n_0\lambda/(\Lambda\mu)$,
+so $a_3>0\iff\alpha<0$. If $\alpha<0$ then also $a_2=\theta(\lambda+\beta/\Lambda)
++|\alpha|n_0/(\Lambda\mu)>0$, and
+\[
+a_1a_2-a_3
+=\underbrace{(\lambda+\theta+\tfrac{\beta}{\Lambda})\,\theta(\lambda+\tfrac{\beta}{\Lambda})}_{>0}
++\frac{|\alpha|n_0}{\Lambda\mu}\Big[(\lambda+\theta+\tfrac{\beta}{\Lambda})-\lambda\Big]
+=(\cdots)+\frac{|\alpha|n_0}{\Lambda\mu}\Big(\theta+\tfrac{\beta}{\Lambda}\Big)>0,
+\]
+so all three Routh--Hurwitz conditions of Theorem~\ref{thm:rh} hold and the
+equilibrium is asymptotically stable. Conversely, if $\alpha>0$ then $a_3<0$,
+violating the necessary condition $a_3>0$, so at least one root lies in the closed
+right half-plane and the equilibrium is unstable. ($\alpha=0$ is the neutral case,
+$a_3=0$, with a root at the origin.)
+\end{proof}
+
+Proposition~\ref{prop:stab} is the precise version of the book's thesis: with all
+thermal and kinetic parameters positive, \emph{the sign of the feedback
+coefficient alone} decides linear stability. The RBMK's low-power state had the
+effective $\alpha>0$ and was therefore linearly unstable.
+
+\paragraph{Lyapunov viewpoint.}
+By Theorem~\ref{thm:lyap} (Appendix~\ref{app:math}), $\alpha<0$ guarantees a
+quadratic Lyapunov function $V(\mathbf x)=\mathbf x^{\!\top}\mathbf P\mathbf x$ with
+$\mathbf P\succ0$ solving $\mathbf A^{\!\top}\mathbf P+\mathbf P\mathbf A=-\mathbf
+Q$ for any $\mathbf Q\succ0$; then $\dot V=-\mathbf x^{\!\top}\mathbf Q\mathbf x<0$
+certifies decay of every small perturbation. Stability is thus not merely
+spectral but energy-dissipative.
+
+\section{The Nyquist criterion, precisely}
+\label{sec:nyquist-precise}
+
+For the full delayed system the loop gain $L(s)=Z(s)H(s)$ is meromorphic, and
+stability is read off by the argument principle.
+
+\begin{theorem}[Nyquist]
+\label{thm:nyquist}
+Let $L(s)$ be the open-loop transfer function with $P$ poles in the open right
+half-plane. As $s$ traverses the Nyquist contour (the imaginary axis closed by an
+infinite right semicircle), let $N$ be the number of clockwise encirclements of
+the point $-1$ by $L(s)$. Then the number of closed-loop poles in the right
+half-plane is $Z=N+P$. The closed loop is stable iff $Z=0$, i.e.\ iff
+$N=-P$.
+\end{theorem}
+\begin{proof}[Sketch]
+Closed-loop poles are zeros of $1+L(s)$. By the argument principle, as $s$ runs
+over the closed contour, the net change in $\arg(1+L(s))$ equals $2\pi(Z-P)$,
+where $Z,P$ count zeros and poles of $1+L$ (equivalently poles of $L$) inside the
+contour. The change in $\arg(1+L)$ is $2\pi$ times the clockwise encirclements of
+the origin by $1+L$, i.e.\ of $-1$ by $L$; hence $N=Z-P$.
+\end{proof}
+
+For an open-loop-stable reactor ($P=0$) the criterion reduces to the familiar
+statement: stability iff the locus $L(j\omega)$ does not encircle $-1$. Phase lag
+in $H(s)$ from thermal transport can rotate the locus until it encircles $-1$,
+which is the frequency-domain face of Proposition~\ref{prop:stab}'s sign change.
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]

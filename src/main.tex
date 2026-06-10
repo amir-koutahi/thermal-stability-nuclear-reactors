@@ -27,7 +27,7 @@
 % ---- spacing & headings ---------------------------------------------------
 \setlength{\parskip}{0.6em}
 \setlength{\parindent}{0pt}
-\linespread{1.15}
+\linespread{1.08}
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries\color{ink}}
   {\color{accent}\MakeUppercase{\chaptertitlename}\ \thechapter}{12pt}{\Huge}
@@ -40,11 +40,16 @@
 \fancyhead[R]{\small\thepage}
 
 % ---- theorem-like environments -------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
-\newtheorem{example}{Example}[chapter]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
 \theoremstyle{remark}
-\newtheorem{remark}{Remark}[chapter]
+\newtheorem{remark}[theorem]{Remark}
 
 % ---- handy macros ---------------------------------------------------------
 \newcommand{\unit}[1]{\,\mathrm{#1}}
@@ -186,6 +191,7 @@ Chernobyl accident.''
 \input{chapters/B_derivations}
 \input{chapters/C_timeline}
 \input{chapters/E_worked_examples}
+\input{chapters/F_math_methods}
 \input{chapters/D_glossary}
 
 % ===========================================================================

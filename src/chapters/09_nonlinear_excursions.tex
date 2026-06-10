@@ -117,6 +117,85 @@ excursion ends only by destroying the core. Thermal stability is the difference
 between a spike and an explosion.}
 
 
+
+\section{Exact solution of the Nordheim--Fuchs model}
+\label{sec:nf-exact}
+
+The Nordheim--Fuchs excursion admits a closed-form solution, which we now derive
+rigorously. It is one of the few exactly solvable nonlinear models in reactor
+dynamics, and its $\operatorname{sech}^2$ pulse is exact, not approximate.
+
+On the prompt timescale drop the precursors and write the prompt kinetics with
+adiabatic linear feedback,
+\begin{equation}
+\frac{\dd p}{\dd t}=a(t)\,p,\qquad a(t)=\frac{\rho_0-\beta-\gamma E(t)}{\Lambda},
+\qquad \frac{\dd E}{\dd t}=p,
+\label{eq:nf-system}
+\end{equation}
+where $E(t)=\int_0^t p\,\dd t'$ is the released energy and $\gamma=|\alpha|/C>0$
+the feedback per unit energy.
+
+\begin{theorem}[Nordheim--Fuchs pulse]
+\label{thm:nf}
+Let $a_0=(\rho_0-\beta)/\Lambda>0$ (prompt supercritical) and $p(-\infty)=0$. Then
+the solution of \eqref{eq:nf-system} is the symmetric pulse
+\begin{equation}
+\boxed{\,p(t)=p_{\max}\,\operatorname{sech}^2\!\Big(\frac{t-t_m}{2\tau}\Big)\,},
+\qquad
+p_{\max}=\frac{(\rho_0-\beta)^2}{2\gamma\Lambda},\quad
+\tau=\frac{\Lambda}{\rho_0-\beta},
+\end{equation}
+with peak at the time $t_m$ where $a(t_m)=0$. The total released energy and the
+adiabatic temperature rise are
+\begin{equation}
+E_{\infty}=\int_{-\infty}^{\infty}\!p\,\dd t=\frac{2(\rho_0-\beta)}{\gamma},
+\qquad \Delta T=\frac{E_\infty}{C}=\frac{2(\rho_0-\beta)}{\gamma C},
+\end{equation}
+and the full width at half maximum is
+$\Delta t_{1/2}=4\tau\,\operatorname{arccosh}\sqrt2\approx 3.53\,\tau$.
+\end{theorem}
+\begin{proof}
+From \eqref{eq:nf-system}, $a=\dot p/p=(\ln p)'$ and
+$\dot a=-(\gamma/\Lambda)\dot E=-(\gamma/\Lambda)p$. Hence $u=\ln p$ satisfies the
+Liouville equation $u''=-(\gamma/\Lambda)e^{u}$. Multiplying by $u'$ and
+integrating gives the first integral
+\begin{equation}
+\tfrac12 a^2+\frac{\gamma}{\Lambda}p=K=\text{const}.
+\label{eq:nf-invariant}
+\end{equation}
+As $t\to-\infty$, $p\to0$ and $a\to a_0$, so $K=\tfrac12a_0^2$ and
+$a^2=a_0^2-2(\gamma/\Lambda)p$. The peak ($\dot p=0\Rightarrow a=0$) thus occurs at
+$p_{\max}=\Lambda a_0^2/(2\gamma)=(\rho_0-\beta)^2/(2\gamma\Lambda)$. Substituting
+$a=\dot p/p$ into \eqref{eq:nf-invariant} yields a separable first-order ODE whose
+solution with $p(t_m)=p_{\max}$ is
+$p(t)=p_{\max}\operatorname{sech}^2[a_0(t-t_m)/2]$; identifying $\tau=1/a_0$ gives
+the stated form. Finally
+$E_\infty=p_{\max}\int_{-\infty}^{\infty}\operatorname{sech}^2[(t-t_m)/2\tau]\,\dd t
+=p_{\max}\cdot4\tau=2(\rho_0-\beta)/\gamma$, and the FWHM follows from
+$\operatorname{sech}^2(z)=\tfrac12\Leftrightarrow z=\operatorname{arccosh}\sqrt2$.
+\end{proof}
+
+The invariant \eqref{eq:nf-invariant} is the key structural fact: it is a conserved
+``energy'' for the excursion, and its existence is exactly why a \emph{negative}
+feedback ($\gamma>0$) bounds the pulse, while $\gamma\le0$ destroys the invariant
+and the solution diverges. The released energy $E_\infty=2(\rho_0-\beta)/\gamma$
+scales \emph{inversely} with the feedback strength: a reactor with weak (or wrong-
+sign) prompt feedback deposits unbounded energy, the quantitative statement of the
+Chernobyl outcome.
+
+\begin{corollary}[No benign limit without negative feedback]
+If $\gamma\le0$ the invariant \eqref{eq:nf-invariant} has no turning point with
+$p>0$: $a(t)$ is nondecreasing and $p(t)\to\infty$ in finite or infinite time
+within the model. A bounded, self-terminating excursion exists if and only if the
+prompt feedback is strictly negative, $\gamma>0$.
+\end{corollary}
+\begin{proof}
+The peak requires $a=0$ with $p_{\max}=\Lambda a_0^2/(2\gamma)>0$, impossible for
+$\gamma\le0$. With $\gamma\le0$, $\dot a=-(\gamma/\Lambda)p\ge0$, so $a$ never
+decreases from $a_0>0$ and $p=e^{u}$ grows without bound.
+\end{proof}
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]

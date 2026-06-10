@@ -166,6 +166,76 @@ at Chernobyl, where the point picture understates the danger of an asymmetric,
 axially-peaked flux.
 
 
+
+\section{One-group diffusion theory and the criticality eigenvalue}
+\label{sec:diffusion}
+
+The point-kinetics amplitude equation rests on separating the neutron field into a
+fixed spatial shape and a time-dependent amplitude. We justify this from one-group
+diffusion theory and, in the process, define criticality as an eigenvalue problem.
+
+In the one-group diffusion approximation the flux $\phi(\mathbf r,t)$ obeys
+\begin{equation}
+\frac{1}{v}\frac{\partial \phi}{\partial t}
+ = D\nabla^2\phi - \Sigma_a \phi + \nu\Sigma_f \phi
+ \quad\text{in }\Omega,\qquad \phi|_{\partial\Omega}=0,
+\label{eq:diffusion}
+\end{equation}
+with diffusion coefficient $D$, absorption $\Sigma_a$ and production $\nu\Sigma_f$.
+Seeking separable solutions $\phi=\psi(\mathbf r)T(t)$ forces the spatial factor to
+satisfy the Helmholtz eigenproblem
+\begin{equation}
+\nabla^2\psi + B^2\psi = 0 \ \text{in }\Omega,\qquad \psi|_{\partial\Omega}=0,
+\label{eq:helmholtz}
+\end{equation}
+where $B^2$ is the \emph{geometric buckling}: the spectrum
+$0<B_0^2<B_1^2\le\cdots$ consists of the Dirichlet eigenvalues of $-\nabla^2$, and
+the fundamental eigenfunction $\psi_0>0$ is the unique sign-definite mode.
+
+\begin{theorem}[Criticality condition]
+\label{thm:crit}
+With $\phi=\psi_0(\mathbf r)e^{\omega t}$ inserted into \eqref{eq:diffusion},
+\begin{equation}
+\frac{\omega}{v}= -DB_0^2-\Sigma_a+\nu\Sigma_f .
+\end{equation}
+Defining $L^2=D/\Sigma_a$ and $k_\infty=\nu\Sigma_f/\Sigma_a$, the reactor is
+critical $(\omega=0)$ iff
+\begin{equation}
+\keff \equiv \frac{k_\infty}{1+L^2 B_0^2}=1 .
+\label{eq:keff-diff}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Insert $\phi=\psi_0e^{\omega t}$ into \eqref{eq:diffusion} and use
+$\nabla^2\psi_0=-B_0^2\psi_0$; dividing by $\psi_0e^{\omega t}$ gives the
+dispersion relation. Setting $\omega=0$ yields $\nu\Sigma_f=\Sigma_a+DB_0^2$;
+dividing by $\Sigma_a(1+L^2B_0^2)$ and identifying $k_\infty,L^2$ gives
+\eqref{eq:keff-diff}.
+\end{proof}
+
+Equation \eqref{eq:keff-diff} is the diffusion-theory form of the six-factor
+formula: the factor $(1+L^2B_0^2)^{-1}$ is exactly the non-leakage probability,
+and $B_0^2$ carries the geometry (e.g.\ $B_0^2=(\pi/\tilde R)^2$ for a bare slab or
+sphere of extrapolated half-width/radius $\tilde R$). The dominance of the
+fundamental mode is what licenses the point-kinetics ansatz.
+
+\begin{proposition}[Fundamental-mode dominance]
+\label{prop:fundamental}
+Expanding $\phi=\sum_n a_n(t)\psi_n$ in Helmholtz eigenfunctions, each amplitude
+obeys $\dot a_n/v=(\nu\Sigma_f-\Sigma_a-DB_n^2)a_n$, so
+$a_n(t)=a_n(0)e^{\omega_n t}$ with $\omega_n$ strictly decreasing in $B_n^2$.
+Hence $\omega_0>\omega_n$ for all $n\ge1$, $a_n/a_0\to0$ as $t\to\infty$, and
+$\phi(\mathbf r,t)\to\psi_0(\mathbf r)\,n(t)$. The point-kinetics separation is the
+asymptotic, fundamental-mode limit.
+\end{proposition}
+\begin{proof}
+Orthogonality of the $\psi_n$ under \eqref{eq:helmholtz} decouples
+\eqref{eq:diffusion} mode by mode, giving the stated scalar ODEs; the ordering
+$\omega_0>\omega_1>\cdots$ follows from $B_0^2<B_1^2<\cdots$, and the ratios
+$a_n(t)/a_0(t)=\,[a_n(0)/a_0(0)]\,e^{(\omega_n-\omega_0)t}\to0$.
+\end{proof}
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]

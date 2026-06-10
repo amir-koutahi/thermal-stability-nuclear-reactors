@@ -129,6 +129,77 @@ low-margin, distorted-flux state in which the positive void coefficient could
 trigger catastrophe.}
 
 
+
+\section{Linear stability of the iodine--xenon equilibrium}
+\label{sec:xenon-stability}
+
+We now analyse xenon dynamics rigorously, first at a point (temporal stability)
+and then for a spatial mode (the oscillation).
+
+\paragraph{Temporal stability at fixed flux.}
+Linearise the iodine--xenon equations about the equilibrium $(I_\infty,X_\infty)$
+at constant flux $\phi_0$. With state $(\delta I,\delta X)$ the Jacobian is
+\begin{equation}
+\mathbf J=
+\begin{pmatrix}
+-\lambda_I & 0\\[2pt]
+\lambda_I & -(\lambda_X+\sigma_X\phi_0)
+\end{pmatrix},
+\end{equation}
+which is lower-triangular with eigenvalues $-\lambda_I<0$ and
+$-(\lambda_X+\sigma_X\phi_0)<0$. Hence at fixed flux the point equilibrium is
+\emph{unconditionally asymptotically stable}: a purely temporal xenon transient
+(the post-shutdown peak) decays. Instability requires the flux to respond to
+xenon, i.e.\ spatial coupling.
+
+\paragraph{Spatial mode and the oscillation.}
+Consider the first antisymmetric flux mode with amplitude $\epsilon(t)$ (a
+``tilt'' between two halves of the core) coupled to the differential xenon
+$\eta(t)$ and differential iodine $\zeta(t)$ between the halves. Retaining the
+xenon reactivity feedback on the tilt and a prompt power (temperature) coefficient
+$\alpha_P$, the linearised modal system takes the form
+\begin{equation}
+\dot\epsilon = g\,\big(c_X\,\eta + \alpha_P\,\epsilon\big),\quad
+\dot\zeta = \gamma_I\Sigma_f\phi_0\,\epsilon-\lambda_I\zeta,\quad
+\dot\eta = \lambda_I\zeta-(\lambda_X+\sigma_X\phi_0)\eta-\sigma_X\phi_0 X_\infty\,\epsilon,
+\label{eq:xenon-modal}
+\end{equation}
+where $g>0$ is the modal flux gain and $c_X>0$ encodes the destabilising
+xenon-burnout coupling. The Jacobian of \eqref{eq:xenon-modal} is $3\times3$ with
+characteristic polynomial $s^3+b_1 s^2+b_2 s+b_3$ whose coefficients depend on
+$\alpha_P$ through $b_1\ni -g\alpha_P$.
+
+\begin{proposition}[Feedback threshold for spatial xenon stability]
+\label{prop:xenon}
+There is a critical coefficient $\alpha_{\rm crit}(\phi_0)>0$, increasing in the
+flux $\phi_0$ and in the core size, such that the spatial xenon mode
+\eqref{eq:xenon-modal} is asymptotically stable if and only if
+\begin{equation}
+\alpha_P < -\,\alpha_{\rm crit}(\phi_0).
+\end{equation}
+For $\alpha_P>-\alpha_{\rm crit}$ a complex-conjugate pair of eigenvalues crosses
+into the right half-plane (a Hopf bifurcation), producing a growing oscillation
+whose angular frequency at onset is
+$\omega_{\rm osc}\approx\sqrt{b_2}$, corresponding to a period of order
+$15$--$30\unit{h}$ for typical thermal-reactor parameters.
+\end{proposition}
+\begin{proof}[Sketch]
+Apply the Routh--Hurwitz criterion (Theorem~\ref{thm:rh}) to
+$s^3+b_1s^2+b_2s+b_3$. The destabilising xenon coupling enters $b_1,b_2,b_3$ with a
+sign opposite to $\alpha_P$; a more negative $\alpha_P$ increases $b_1$ and the
+product $b_1b_2-b_3$. The condition $b_1b_2-b_3>0$ defines a threshold
+$\alpha_{\rm crit}$ such that the boundary $b_1b_2-b_3=0$ is the Hopf locus, where a
+conjugate pair $s=\pm i\omega_{\rm osc}$ with $\omega_{\rm osc}^2=b_2$ sits on the
+imaginary axis. The dependence of $\alpha_{\rm crit}$ on $\phi_0$ and core size
+follows from $c_X,g\propto\phi_0$ and the larger spatial gain of bigger cores.
+\end{proof}
+
+Proposition~\ref{prop:xenon} formalises the qualitative claim of
+Figure~\ref{fig:xenon}: a sufficiently strong negative power coefficient damps the
+spatial xenon oscillation, while a weak or positive one permits a growing,
+day-scale oscillation---most easily in a large core such as the RBMK.
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]

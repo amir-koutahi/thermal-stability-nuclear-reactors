@@ -1,0 +1,109 @@
+\chapter{Mathematical Methods}
+\label{app:math}
+
+This appendix collects the linear-systems and stability results invoked in the
+main text, with statements and short proofs, so the book is self-contained.
+
+\section{Linear systems and the matrix exponential}
+
+For $\dot{\mathbf x}=\mathbf A\mathbf x$, $\mathbf x(0)=\mathbf x_0$, the unique
+solution is $\mathbf x(t)=e^{\mathbf A t}\mathbf x_0$, where
+$e^{\mathbf A t}=\sum_{k\ge0}(\mathbf A t)^k/k!$ converges for all $t$.
+
+\begin{theorem}[Spectral mapping]
+If $\mathbf A$ has eigenvalues $\{s_j\}$ then $e^{\mathbf A t}$ has eigenvalues
+$\{e^{s_j t}\}$ with the same eigenvectors. Consequently
+$\|\mathbf x(t)\|\to0$ for every $\mathbf x_0$ iff $\Re s_j<0$ for all $j$.
+\end{theorem}
+\begin{proof}
+If $\mathbf A\mathbf v=s\mathbf v$ then $e^{\mathbf A t}\mathbf v=\sum_k
+(st)^k/k!\,\mathbf v=e^{st}\mathbf v$. Decomposing $\mathbf x_0$ in a Jordan basis,
+each mode evolves as $t^m e^{s_j t}$; this tends to $0$ for all $m$ iff
+$\Re s_j<0$.
+\end{proof}
+
+\section{Lyapunov's theorem for linear systems}
+
+\begin{theorem}[Lyapunov]
+\label{thm:lyap}
+$\dot{\mathbf x}=\mathbf A\mathbf x$ is asymptotically stable iff for some (every)
+symmetric positive-definite $\mathbf Q\succ0$ the Lyapunov equation
+$\mathbf A^{\!\top}\mathbf P+\mathbf P\mathbf A=-\mathbf Q$ has a unique symmetric
+solution $\mathbf P\succ0$. Then $V(\mathbf x)=\mathbf x^{\!\top}\mathbf P\mathbf x$
+satisfies $\dot V=-\mathbf x^{\!\top}\mathbf Q\mathbf x<0$.
+\end{theorem}
+\begin{proof}
+If $\mathbf A$ is Hurwitz, $\mathbf P=\int_0^{\infty}e^{\mathbf A^{\!\top}t}\mathbf
+Q\,e^{\mathbf A t}\,\dd t$ converges, is positive definite, and satisfies the
+Lyapunov equation (differentiate under the integral). Conversely, if such
+$\mathbf P\succ0$ exists, then $V>0$ and $\dot V<0$ force $\mathbf x(t)\to0$, so
+$\mathbf A$ is Hurwitz.
+\end{proof}
+
+\section{The Routh--Hurwitz criterion}
+
+\begin{theorem}[Routh--Hurwitz]
+The real polynomial $s^n+a_1s^{n-1}+\cdots+a_n$ has all roots with negative real
+part iff all leading principal minors of the Hurwitz matrix are positive. In
+particular:
+\begin{itemize}[nosep]
+\item $n=2$: stable iff $a_1>0$ and $a_2>0$.
+\item $n=3$: stable iff $a_1>0$, $a_3>0$, and $a_1a_2>a_3$.
+\item $n=4$: stable iff $a_1,a_2,a_3,a_4>0$ and $a_1a_2a_3>a_3^2+a_1^2a_4$.
+\end{itemize}
+\end{theorem}
+\begin{proof}[Remark on proof]
+The criterion follows from the Hermite--Biehler theorem on the interlacing of the
+roots of the even and odd parts of the polynomial along the imaginary axis;
+equivalently from the Routh array, whose first-column sign changes count
+right-half-plane roots. The low-order cases are obtained by direct evaluation of
+the Hurwitz determinants.
+\end{proof}
+
+\section{The argument principle and Nyquist}
+
+\begin{theorem}[Argument principle]
+Let $f$ be meromorphic inside and on a positively oriented simple closed contour
+$\Gamma$, with no zeros or poles on $\Gamma$. Then
+$\frac{1}{2\pi i}\oint_\Gamma \frac{f'(s)}{f(s)}\,\dd s = Z-P$, the number of zeros
+minus poles of $f$ inside $\Gamma$ (with multiplicity).
+\end{theorem}
+\noindent Applying this to $f=1+L(s)$ on the Nyquist contour yields
+Theorem~\ref{thm:nyquist}: the encirclements of $-1$ by $L$ equal $Z-P$.
+
+\section{Metzler matrices and positivity}
+
+\begin{theorem}[Positivity of Metzler flows]
+A real matrix $\mathbf A$ is \emph{Metzler} (all off-diagonal entries $\ge0$) iff
+$e^{\mathbf A t}\ge0$ entrywise for all $t\ge0$. A Metzler $\mathbf A$ has a real
+dominant eigenvalue (its spectral abscissa) with a nonnegative eigenvector
+(Perron--Frobenius for Metzler matrices).
+\end{theorem}
+\begin{proof}
+Pick $c$ with $\mathbf B=\mathbf A+c\mathbf I\ge0$. Then $e^{\mathbf A t}=
+e^{-ct}e^{\mathbf B t}$ and $e^{\mathbf B t}=\sum_k(\mathbf B t)^k/k!\ge0$.
+Conversely, if $e^{\mathbf A t}\ge0$ for all small $t$, then
+$\mathbf A=\lim_{t\to0^+}(e^{\mathbf A t}-\mathbf I)/t$ has nonnegative
+off-diagonal entries. The Perron--Frobenius statement applies to $\mathbf B\ge0$
+and transfers to $\mathbf A$ by the shift.
+\end{proof}
+
+This theorem underlies Proposition~\ref{prop:metzler}: the point-kinetics
+generator is Metzler, so power and precursor populations stay nonnegative.
+
+\section{Gershgorin disc theorem}
+
+\begin{theorem}[Gershgorin]
+Every eigenvalue of $\mathbf A=(a_{ij})\in\mathbb C^{n\times n}$ lies in at least
+one disc $\{z:|z-a_{ii}|\le\sum_{j\ne i}|a_{ij}|\}$.
+\end{theorem}
+\begin{proof}
+For eigenpair $(s,\mathbf v)$ pick $i$ with $|v_i|=\max_k|v_k|>0$. The $i$th row of
+$\mathbf A\mathbf v=s\mathbf v$ gives $(s-a_{ii})v_i=\sum_{j\ne i}a_{ij}v_j$;
+dividing by $v_i$ and bounding $|v_j/v_i|\le1$ yields the disc inequality.
+\end{proof}
+
+Gershgorin discs give quick, rigorous bounds on the kinetic and thermal
+eigenvalues without solving the characteristic polynomial---useful for verifying,
+for instance, that all delayed-precursor eigenvalues remain near their poles
+$-\lambda_i$ under weak feedback.

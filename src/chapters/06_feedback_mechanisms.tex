@@ -190,6 +190,77 @@ stable and self-regulating; a system with net-positive feedback, especially a
 prompt one, is an accident waiting for a trigger.
 
 
+
+\section{Rigorous theory of the Doppler coefficient}
+\label{sec:doppler-rigorous}
+
+We derive the temperature dependence of the Doppler coefficient from
+resonance-absorption theory. Near an isolated resonance at $E_0$ the capture
+cross-section of a \emph{stationary} target is the Breit--Wigner form
+\begin{equation}
+\sigma_\gamma^0(E)=\sigma_0\,\frac{\Gamma_\gamma}{\Gamma}\sqrt{\frac{E_0}{E}}\,
+\frac{1}{1+x^2},\qquad x=\frac{2(E-E_0)}{\Gamma},
+\end{equation}
+with total width $\Gamma$, radiative width $\Gamma_\gamma$, and peak $\sigma_0$.
+Thermal motion of the target nuclei convolves this with a Maxwellian of relative
+velocities, giving the Doppler-broadened shape
+\begin{equation}
+\sigma_\gamma(E,T)=\sigma_0\,\frac{\Gamma_\gamma}{\Gamma}\sqrt{\frac{E_0}{E}}\,
+\psi(\xi,x),\qquad
+\psi(\xi,x)=\frac{\xi}{2\sqrt{\pi}}\!\int_{-\infty}^{\infty}\!
+\frac{e^{-\frac14\xi^2(x-y)^2}}{1+y^2}\,\dd y,
+\label{eq:psi}
+\end{equation}
+with broadening parameter $\xi=\Gamma/\Delta_D$ and \emph{Doppler width}
+\begin{equation}
+\Delta_D=\sqrt{\frac{4E_0 k_B T}{A}}\ \propto\ \sqrt{T},
+\label{eq:dopplerwidth}
+\end{equation}
+$A$ the target mass number. The convolution \eqref{eq:psi} conserves area,
+$\int_{-\infty}^{\infty}\psi\,\dd x=\pi$, so broadening lowers and widens the line
+without changing its integral.
+
+The reactivity effect operates through the \emph{effective resonance integral}
+under self-shielding. In the narrow-resonance approximation with background
+cross-section $\sigma_b$ per absorber atom,
+\begin{equation}
+I_{\rm eff}(T)=\int \frac{\sigma_\gamma(E,T)\,\sigma_b}{\sigma_\gamma(E,T)+\sigma_b}\,
+\frac{\dd E}{E},
+\end{equation}
+which is an increasing function of the Doppler width.
+
+\begin{proposition}[Temperature law of the Doppler coefficient]
+\label{prop:doppler}
+To leading order in the broadening, $\partial I_{\rm eff}/\partial T>0$ with
+$\partial I_{\rm eff}/\partial T\propto \dd\Delta_D/\dd T\propto T^{-1/2}$.
+Consequently the Doppler coefficient obeys
+\begin{equation}
+\alpha_D(T)=\frac{\partial\rho}{\partial T}
+ =-\frac{1}{p}\,\frac{\partial p}{\partial I_{\rm eff}}\,
+   \frac{\partial I_{\rm eff}}{\partial T}
+ =\frac{A_D}{\sqrt{T}},\qquad A_D<0,
+\end{equation}
+so $\alpha_D$ is negative for all $T$ and weakens as $T^{-1/2}$ without ever
+changing sign. The reactivity defect $\Delta\rho_D(T)=\int_{T_0}^{T}\alpha_D\,\dd
+T'\propto -(\sqrt T-\sqrt{T_0})$ is strictly negative and decreasing.
+\end{proposition}
+\begin{proof}
+Self-shielding makes $I_{\rm eff}$ increase as the line broadens because the
+saturated (flat-topped) region of the integrand widens; differentiating the
+narrow-resonance integral and using $\partial\Delta_D/\partial T=\tfrac12
+\Delta_D/T\propto T^{-1/2}$ from \eqref{eq:dopplerwidth} gives
+$\partial I_{\rm eff}/\partial T\propto T^{-1/2}$. Increased resonance capture
+lowers the resonance escape probability, $\partial p/\partial I_{\rm eff}<0$, so
+$\alpha_D=-p^{-1}(\partial p/\partial I_{\rm eff})(\partial I_{\rm eff}/\partial
+T)$ is a negative constant times $T^{-1/2}$. Integrating yields the stated defect.
+\end{proof}
+
+Proposition~\ref{prop:doppler} is the rigorous content of the earlier heuristic:
+Doppler feedback is prompt (it depends only on $\Tf$), structurally negative (it
+needs only a fertile resonance absorber such as $^{238}$U), and bounded below by a
+$T^{-1/2}$ law.
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]

@@ -177,6 +177,90 @@ Chernobyl excursion---is about staying below that line, or about what happens
 when a machine crosses it.}
 
 
+
+\section{Matrix formulation and spectral theory}
+\label{sec:pk-matrix}
+
+Write the state $\mathbf y=(n,C_1,\dots,C_G)^{\!\top}\in\mathbb R^{G+1}$. For
+constant $\rho$ the point kinetics \eqref{eq:prk} are the linear system
+$\dot{\mathbf y}=\mathbf M(\rho)\mathbf y$ with
+\begin{equation}
+\mathbf M(\rho)=
+\begin{pmatrix}
+\dfrac{\rho-\beta}{\Lambda} & \lambda_1 & \cdots & \lambda_G\\[5pt]
+\dfrac{\beta_1}{\Lambda} & -\lambda_1 & & \\
+\vdots & & \ddots & \\
+\dfrac{\beta_G}{\Lambda} & & & -\lambda_G
+\end{pmatrix}.
+\label{eq:M}
+\end{equation}
+
+\begin{theorem}[Spectrum equals inhour roots]
+\label{thm:spectrum}
+$s\in\sigma(\mathbf M(\rho))$ if and only if $s$ solves the inhour equation
+\eqref{eq:inhour}: $\ \rho=\Lambda s+\sum_{i=1}^G \beta_i s/(s+\lambda_i).$
+\end{theorem}
+\begin{proof}
+For an eigenpair $(s,\mathbf y)$ the precursor rows give
+$C_i=\frac{\beta_i}{\Lambda(s+\lambda_i)}\,n$ (for $s\ne-\lambda_i$), and the first
+row gives $s\,n=\frac{\rho-\beta}{\Lambda}n+\sum_i\lambda_i C_i$. Substituting and
+dividing by $n/\Lambda$,
+$\Lambda s=\rho-\beta+\sum_i\frac{\lambda_i\beta_i}{s+\lambda_i}$; using
+$\lambda_i/(s+\lambda_i)=1-s/(s+\lambda_i)$ yields \eqref{eq:inhour}. The poles
+$s=-\lambda_i$ are not eigenvalues (they force $n=0$ and hence $\mathbf y=0$).
+\end{proof}
+
+\begin{theorem}[Reality, simplicity, interlacing]
+\label{thm:interlacing}
+For $\rho\ne0$ the inhour equation has exactly $G+1$ real simple roots
+$s_0>s_1>\cdots>s_G$ obeying
+$s_0>-\lambda_{(1)}>s_1>-\lambda_{(2)}>\cdots>-\lambda_{(G)}>s_G$, where
+$\lambda_{(1)}<\cdots<\lambda_{(G)}$ are the ordered decay constants. Moreover
+$\operatorname{sign}(s_0)=\operatorname{sign}(\rho)$.
+\end{theorem}
+\begin{proof}
+Let $h(s)=\Lambda s+\sum_i\beta_i s/(s+\lambda_i)$. Then
+$h'(s)=\Lambda+\sum_i\beta_i\lambda_i/(s+\lambda_i)^2>0$ wherever defined, so $h$
+is strictly increasing on each interval between consecutive poles, running from
+$-\infty$ to $+\infty$ across each; thus $h(s)=\rho$ has exactly one root in each of
+the $G$ inter-pole gaps and one to the right of $-\lambda_{(1)}$, giving $G+1$
+simple real interlacing roots. Since $h(0)=0$ and $h$ is increasing through the
+origin, $\rho>0\Rightarrow s_0>0$ and $\rho<0\Rightarrow s_0<0$.
+\end{proof}
+
+\begin{corollary}
+The asymptotic period $T=1/s_0$ has the sign of $\rho$, and the solution is
+$\mathbf y(t)=\sum_{j=0}^{G}c_j\mathbf v_j e^{s_j t}$ with $\mathbf v_j$ the
+eigenvector of $s_j$; for $t\to\infty$ the dominant mode $e^{s_0 t}$ prevails.
+\end{corollary}
+
+\begin{proposition}[Nonnegativity of the flow]
+\label{prop:metzler}
+$\mathbf M(\rho)$ is a Metzler matrix (off-diagonal entries $\ge0$); hence
+$e^{\mathbf M t}\ge0$ entrywise for $t\ge0$, and $\mathbf y(0)\ge0$ implies
+$\mathbf y(t)\ge0$ for all $t\ge0$. In particular the power $n(t)$ never goes
+negative.
+\end{proposition}
+\begin{proof}
+The off-diagonal entries are $\lambda_i\ge0$ and $\beta_i/\Lambda\ge0$; all other
+off-diagonal entries vanish. Choose $c>0$ with $\mathbf M+c\mathbf I\ge0$; then
+$e^{\mathbf M t}=e^{-ct}e^{(\mathbf M+c\mathbf I)t}$, and the exponential of a
+nonnegative matrix is nonnegative (its power series has nonnegative terms). A
+nonnegative semigroup maps the nonnegative orthant into itself.
+\end{proof}
+
+\paragraph{Prompt jump as a singular perturbation.}
+Treat $\Lambda$ as a small parameter. The fast equation
+$\Lambda\dot n=(\rho-\beta)n+\Lambda\sum_i\lambda_i C_i$ has, for $\rho<\beta$, a
+boundary layer of width $\mathcal O\!\big(\Lambda/(\beta-\rho)\big)$ during which
+the slow variables $C_i$ are frozen at their pre-step values. Matching the inner
+(layer) solution to the outer quasi-static balance
+$n=\Lambda\big(\sum_i\lambda_iC_i\big)/(\beta-\rho)$ gives, at $t=0^+$,
+$n(0^+)/n(0^-)=\beta/(\beta-\rho)$, i.e.\ \eqref{eq:promptjump}, with relative error
+$\mathcal O(\Lambda)$. This places the prompt-jump approximation on a rigorous
+asymptotic footing.
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]
