@@ -107,6 +107,78 @@ how temperature, in turn, becomes reactivity---closing the feedback loop whose
 sign decides stability.
 
 
+
+\section{Decay heat from the fission-product inventory}
+\label{sec:decay-conv}
+
+The Way--Wigner law follows from a convolution of the operating history with the
+per-fission decay-power kernel. Let $f(\tau)$ be the decay power released at age
+$\tau$ after a single fission (W per fission). By linearity of radioactive decay,
+for a fission rate $R(t')$,
+\begin{equation}
+P_d(t)=\int_{-\infty}^{t} R(t')\,f(t-t')\,\dd t'
+      =\int_0^{\infty} R(t-\tau)\,f(\tau)\,\dd\tau .
+\label{eq:decay-conv}
+\end{equation}
+
+\begin{proposition}[Way--Wigner from a power-law kernel]
+\label{prop:waywigner}
+If $f(\tau)=C\,\tau^{-(1+a)}$ with $0<a<1$, and the reactor runs at constant
+fission rate $R_0$ for time $T_0$ before shutdown at $t=0$, then for $t>0$
+\begin{equation}
+P_d(t)=\frac{C R_0}{a}\Big[\,t^{-a}-(t+T_0)^{-a}\,\Big].
+\end{equation}
+With $a=0.2$ and normalisation $CR_0/(aE_f)\to 0.066\,P_0$ this is the Way--Wigner
+correlation; the limit $T_0\to\infty$ gives $P_d/P_0=0.066\,t^{-0.2}$.
+\end{proposition}
+\begin{proof}
+For $R(t')=R_0$ on $[-T_0,0]$ and zero otherwise, the surviving contributions at
+$t>0$ have ages $\tau\in[t,t+T_0]$, so
+$P_d(t)=R_0\!\int_t^{t+T_0}\!C\tau^{-(1+a)}\dd\tau
+=\tfrac{CR_0}{a}[t^{-a}-(t+T_0)^{-a}]$ via $\int\tau^{-(1+a)}\dd\tau=-\tau^{-a}/a$.
+\end{proof}
+
+The power-law kernel itself arises from the broad spread of fission-product decay
+constants: a density of modes $g(\lambda)\propto\lambda^{-1}$ per unit
+$\ln\lambda$ gives $f(\tau)=\int g(\lambda)E(\lambda)\lambda e^{-\lambda\tau}
+\dd\lambda\propto\tau^{-1}$, steepened to $\tau^{-1.2}$ by the energy weighting.
+
+\section{The decay-heat group equations and their solution}
+\label{sec:decay-groups}
+
+Discretising the kernel into exponential groups is equivalent to the linear system
+\begin{equation}
+\frac{\dd\omega_k}{\dd t}=\kappa_k P_f(t)-\lambda_k^{(d)}\omega_k,\qquad
+P_d(t)=\sum_{k=1}^{K}\lambda_k^{(d)}\omega_k(t).
+\end{equation}
+For constant power $P_0$ on $[-T_0,0]$ the pre-shutdown inventory is
+$\omega_k(0)=\dfrac{\kappa_k P_0}{\lambda_k^{(d)}}\big(1-e^{-\lambda_k^{(d)}T_0}\big)$,
+and after shutdown each group decays independently, giving
+\begin{equation}
+P_d(t)=\sum_k \kappa_k P_0\big(1-e^{-\lambda_k^{(d)}T_0}\big)e^{-\lambda_k^{(d)}t},
+\end{equation}
+the standard ANSI/ANS-5.1 representation, whose continuum limit reproduces
+Proposition~\ref{prop:waywigner}.
+
+\section{Adiabatic heat-up with time-dependent decay heat}
+\label{sec:decay-adiabatic}
+
+Integrating the true (decreasing) source rather than a constant $q$, with
+$P_d(t)=0.066\,P_0\,t^{-0.2}$ and $C\,\dd T/\dd t=P_d$,
+\begin{equation}
+\Delta T(t)=\frac1C\int_0^t P_d\,\dd t'
+=\frac{0.066\,P_0}{0.8\,C}\,t^{0.8}=\frac{0.0825\,P_0}{C}\,t^{0.8}.
+\label{eq:decay-heatup}
+\end{equation}
+
+\begin{corollary}[Time to a temperature limit]
+The adiabatic time to reach a rise $\Delta T_{\max}$ is
+$t_{\max}=\big(0.8\,C\,\Delta T_{\max}/(0.066\,P_0)\big)^{1/0.8}$. For
+$P_0=3\times10^{9}\unit{W}$, $C=10^{7}\unit{J/K}$, $\Delta T_{\max}=2000\unit{K}$,
+this gives $t_{\max}\approx1.3\times10^{2}\unit{s}$.
+\end{corollary}
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]

@@ -120,6 +120,87 @@ chapter. Their dynamics---how fast $\Tf$ and $\Tc$ track power---combine with th
 stable.
 
 
+
+\section{Exact conduction in the fuel pin}
+\label{sec:fuel-conduction}
+
+\paragraph{Integral conductivity.}
+With temperature-dependent $k_f$, define $\theta(T)=\int_{T_{\mathrm{ref}}}^{T}
+k_f(T')\dd T'$. Integrating the steady equation
+$\frac1r\frac{\dd}{\dd r}(r k_f\,T')+q'''=0$ once gives
+$k_f\,\dd T=-(q'''/2)\,r\,\dd r$, hence
+\begin{equation}
+\theta(T_c)-\theta(T_s)=\frac{q''' R^2}{4}=\frac{q'}{4\pi},
+\label{eq:integral-cond}
+\end{equation}
+\emph{independently of the form of} $k_f(T)$: it is the integral conductivity, not
+the temperature, that is linear in the linear heat rate $q'$.
+
+\paragraph{Exact transient solution.}
+The homogeneous cylindrical heat equation
+$\partial_t T=\kappa(\partial_{rr}T+r^{-1}\partial_r T)$, $\kappa=k_f/(\rho c_p)$,
+with $T(R,t)=T_s$, $\partial_rT(0,t)=0$, separates as $T-T_s=\mathcal R(r)e^{-\kappa\nu^2t}$
+with $\mathcal R''+\mathcal R'/r+\nu^2\mathcal R=0$, regular solution $J_0(\nu r)$.
+The condition $J_0(\nu R)=0$ quantises $\nu_n=\alpha_n/R$ ($J_0(\alpha_n)=0$;
+$\alpha_1\approx2.405$), giving
+\begin{equation}
+T(r,t)-T_s=\sum_{n=1}^{\infty}A_n J_0\!\Big(\frac{\alpha_n r}{R}\Big)
+\exp\!\Big(-\frac{\kappa\alpha_n^2}{R^2}t\Big),
+\label{eq:bessel-series}
+\end{equation}
+with $A_n$ from the orthogonality
+$\int_0^R J_0(\tfrac{\alpha_n r}{R})J_0(\tfrac{\alpha_m r}{R})r\,\dd r
+=\tfrac12 R^2 J_1(\alpha_n)^2\delta_{nm}$.
+
+\begin{proposition}[Fundamental thermal time constant]
+\label{prop:thermal-tau}
+For $t\gtrsim R^2/\kappa$ the series \eqref{eq:bessel-series} is dominated by $n=1$,
+so the fuel relaxes as a single exponential with
+\begin{equation}
+\tau_f=\frac{R^2}{\kappa\,\alpha_1^2}=\frac{\rho c_p R^2}{k_f\,\alpha_1^2}
+\approx\frac{\rho c_p R^2}{5.78\,k_f}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Mode $n$ decays at $\kappa\alpha_n^2/R^2$, increasing in $n$; the ratio of mode $2$
+to mode $1$ is $e^{-\kappa(\alpha_2^2-\alpha_1^2)t/R^2}\to0$, leaving the $n=1$
+rate $\kappa\alpha_1^2/R^2$, i.e.\ $\tau_f=R^2/(\kappa\alpha_1^2)$,
+$\alpha_1^2\approx5.78$.
+\end{proof}
+
+\paragraph{The Biot number.}
+With $\mathrm{Bi}=hR/k_f$ comparing conduction to convection resistance, the
+lumped balance $\rho c_p V\,\dd T/\dd t=-hA(T-T_\infty)$ (decay constant
+$\tau=\rho c_p V/(hA)$) is valid for $\mathrm{Bi}\ll1$; for $\mathrm{Bi}\gtrsim1$,
+typical of ceramic fuel, the distributed solution \eqref{eq:bessel-series} and
+Proposition~\ref{prop:thermal-tau} are required.
+
+\section{Spectral analysis of the two-node thermal model}
+\label{sec:twonode-spectral}
+
+Linearising the two-node model about steady state gives $\dot{\boldsymbol\delta}
+=\mathbf B\boldsymbol\delta$ for $(\delta\Tf,\delta\Tc)$ with
+\begin{equation}
+\mathbf B=
+\begin{pmatrix}
+-\dfrac{U\!A}{m_fc_f} & \dfrac{U\!A}{m_fc_f}\\[6pt]
+\dfrac{U\!A}{m_cc_c} & -\dfrac{U\!A+2\dot m c_c}{m_cc_c}
+\end{pmatrix}.
+\end{equation}
+Here $\operatorname{tr}\mathbf B<0$ and
+$\det\mathbf B=\dfrac{U\!A\cdot 2\dot m c_c}{m_fc_f\,m_cc_c}>0$, so by the $n=2$
+Routh--Hurwitz conditions (Theorem~\ref{thm:rh}) both eigenvalues
+\begin{equation}
+\lambda_\pm=\tfrac12\Big(\operatorname{tr}\mathbf B\pm
+\sqrt{\operatorname{tr}^2\mathbf B-4\det\mathbf B}\Big)
+\end{equation}
+lie in the left half-plane: the passive thermal network is unconditionally stable.
+The constants $\tau_\pm=-1/\lambda_\pm$ are the fast (fuel) and slow (coolant)
+lags entering the feedback transfer function $H(s)$ of Chapter~\ref{ch:linear}.
+Instability can thus enter only through the neutronic coupling and the sign of the
+reactivity feedback, never through the thermal network itself.
+
+
 \section*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 \begin{enumerate}[leftmargin=*,itemsep=2pt]
