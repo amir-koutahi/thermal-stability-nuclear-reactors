@@ -1,0 +1,115 @@
+\chapter{A History of Stability-Related Incidents}
+\label{ch:history}
+
+Chernobyl was not the first time reactor dynamics asserted themselves. A series of
+earlier events, some deliberate experiments and some accidents, mapped out the
+behaviour of reactors near the edge of stability and shaped the safety principles
+that the RBMK, tragically, did not fully embody. This chapter surveys the most
+instructive cases as context for the Chernobyl analysis to follow.
+
+\section{Deliberate destructive tests: BORAX and SPERT}
+
+In the 1950s and 1960s the United States conducted a remarkable series of
+\emph{intentional} excursion experiments to learn how reactors behave when pushed
+past prompt criticality. The BORAX and SPERT (Special Power Excursion Reactor
+Test) programmes inserted large step reactivities into water-moderated reactors
+and measured the response. The central finding validated the Nordheim--Fuchs
+picture: in an under-moderated water reactor, the prompt negative void and Doppler
+feedback produced a self-limiting power spike. As the water heated and boiled, the
+negative void coefficient sharply reduced reactivity and terminated the
+excursion---often before any mechanical action. The BORAX-I reactor was eventually
+destroyed in a deliberately oversized excursion, confirming that even when the
+energy release fragments the core, the feedback that ends the transient is the
+machine's own physics. These tests are the empirical foundation for the claim that
+a negative-void, negative-Doppler reactor is inherently self-limiting.
+
+\section{SL-1 (1961): a prompt-critical fatal excursion}
+
+The SL-1 (Stationary Low-Power Reactor No.~1) accident in Idaho on 3~January 1961
+was the first and only fatal reactor accident in U.S.\ history. A single central
+control rod was manually withdrawn far beyond its normal range---by hand, during
+maintenance---inserting a large prompt-critical reactivity in an instant. The
+power rose to perhaps $20\unit{GW}$ within milliseconds; the water flashed to steam
+and the resulting pressure surge (a water-hammer) lifted the entire reactor vessel
+several feet, killing the three operators. SL-1 demonstrated, lethally, two
+themes that recur at Chernobyl: a single excessive reactivity insertion can take a
+reactor prompt-critical faster than anyone can react, and the destructive energy
+is delivered not directly by neutrons but by the resulting steam explosion.
+
+\section{NRX (1952) and the Windscale fire (1957)}
+
+Canada's NRX reactor suffered a partial meltdown in 1952 after a combination of
+operator error and control-rod malfunction led to a power excursion with
+inadequate shutdown; it became an early lesson in the importance of reliable,
+fast, and unambiguous shutdown systems. The 1957 Windscale fire in the United
+Kingdom, though primarily a graphite-fire and Wigner-energy event rather than a
+prompt excursion, underscored the hazards of graphite-moderated, gas-cooled
+reactors and of stored energy in graphite---issues that resonate with the RBMK's
+graphite moderator.
+
+\section{Fermi-1 (1966): partial meltdown in a fast reactor}
+
+The Enrico Fermi-1 sodium-cooled fast breeder reactor suffered a partial fuel
+meltdown in 1966 when a loose flow-blocking plate starved several fuel assemblies
+of coolant. Although triggered by a flow blockage rather than a reactivity event,
+Fermi-1 highlighted the tight coupling between thermal-hydraulics and core
+integrity, and the consequences of local cooling failure---an enduring theme in
+thermal safety.
+
+\section{Boiling-water reactor instability events}
+
+Boiling-water reactors carry a designed-in stability concern because their void
+feedback is transported by the coolant and therefore phase-lagged
+(Chapter~\ref{ch:linear}). Several plants experienced unintended power
+oscillations in low-flow, high-power conditions. The most cited is the
+\textbf{LaSalle Unit~2 event of 1988}, in which a loss of feedwater heating and a
+trip of both recirculation pumps left the reactor at high power and low (natural
+circulation) flow---exactly the regime of weakest stability margin. The reactor
+entered a growing power oscillation (an increasing decay ratio) before operators
+manually scrammed it. No damage resulted, but the event prompted industry-wide
+changes: stability exclusion regions on the power--flow map, oscillation detection
+systems, and revised procedures. LaSalle is the clearest modern illustration of a
+\emph{linearly} unstable operating point in a commercial reactor---and, unlike
+Chernobyl, of a system caught and shut down before harm.
+
+\section{Three Mile Island (1979): the thermal aftermath}
+
+The Three Mile Island Unit~2 accident was not a reactivity-stability event---the
+reactor scrammed correctly and promptly. It belongs in this history for the
+\emph{other} half of thermal safety: decay heat. A stuck-open relief valve and
+misread instruments led operators to throttle emergency cooling, and decay heat
+(Chapter~\ref{ch:decay}) slowly uncovered and melted much of the core over hours.
+TMI is the canonical reminder that stopping fission does not stop the heat, and
+that human factors and instrumentation are part of the safety system. Its lessons
+about operator training, control-room design, and instrumentation directly
+informed the international response to Chernobyl seven years later.
+
+\section{What the history teaches}
+
+Read together, these events sketch a coherent set of principles:
+\begin{itemize}[nosep]
+\item A single large, fast reactivity insertion can take a reactor prompt-critical
+faster than any intervention (SL-1).
+\item In a reactor with prompt \emph{negative} feedback, excursions are
+self-limiting (BORAX, SPERT)---this is the design goal.
+\item Phase-lagged feedback can make a nominally negative-feedback reactor
+oscillate (LaSalle); margins and monitoring are required.
+\item Decay heat makes loss of cooling dangerous even after shutdown (TMI,
+Fermi-1).
+\item Shutdown systems must be fast, reliable, and unambiguous (NRX).
+\end{itemize}
+The RBMK violated or weakened several of these at once: it had a positive feedback
+mechanism (void), it was operated into its least stable regime, its shutdown
+system had a fatal flaw, and its operators acted on an incomplete understanding of
+the machine's physics. The next chapters examine how.
+
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item What did the BORAX and SPERT tests demonstrate about under-moderated water reactors?
+\item Summarise the SL-1 accident and the two general lessons it shares with Chernobyl.
+\item Explain why the LaSalle-2 event is an example of a linearly unstable operating point.
+\item Why is Three Mile Island classified here as a decay-heat rather than a stability accident?
+\item Extract five general safety principles from the historical record.
+\end{enumerate}

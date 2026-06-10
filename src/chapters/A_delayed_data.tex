@@ -1,0 +1,56 @@
+\chapter{Delayed-Neutron and Kinetics Data}
+\label{app:data}
+
+The transients and figures in this book use the six-group delayed-neutron data for
+thermal fission of $^{235}$U listed in Table~\ref{tab:delayed}. These values are
+representative of the validated parameters distributed with the PyRK package and
+are consistent with standard compilations (Keepin; ENDF-derived sets). The total
+delayed fraction is $\beta=\sum_i\beta_i$, and a representative prompt neutron
+generation time for a thermal system is $\Lambda\approx 1.1\times10^{-5}\unit{s}$.
+
+\begin{table}[H]
+\centering
+\caption{Six-group delayed-neutron data for thermal fission of $^{235}$U
+(representative values).}
+\label{tab:delayed}
+\begin{tabular}{cccc}
+\toprule
+Group $i$ & $\beta_i$ & fraction $\beta_i/\beta$ & $\lambda_i$ [s$^{-1}$] \\
+\midrule
+1 & 0.000247 & 0.033 & 0.0124 \\
+2 & 0.001385 & 0.219 & 0.0305 \\
+3 & 0.001222 & 0.196 & 0.111 \\
+4 & 0.002645 & 0.395 & 0.301 \\
+5 & 0.000832 & 0.115 & 1.14 \\
+6 & 0.000169 & 0.042 & 3.01 \\
+\midrule
+\textbf{Total} & $\beta\approx 0.0065$ & 1.000 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent The exact group fractions and decay constants vary slightly among
+evaluations and with the fissioning isotope and spectrum. For $^{239}$Pu the total
+delayed fraction is smaller ($\beta\approx 0.0021$), which makes plutonium-bearing
+cores reach prompt criticality at a smaller absolute reactivity---a consideration
+for fast reactors and high-burnup fuel.
+
+\begin{table}[H]
+\centering
+\caption{Representative kinetics parameters used in the worked examples.}
+\begin{tabular}{lll}
+\toprule
+Quantity & Symbol & Value \\
+\midrule
+Total delayed fraction & $\beta$ & $6.5\times10^{-3}$ \\
+Prompt generation time (thermal) & $\Lambda$ & $\sim 1.1\times10^{-5}$ s \\
+One dollar & $\$ = \beta$ & $650$ pcm \\
+Mean delayed-neutron lifetime & $\sum\beta_i/(\beta\lambda_i)$ & $\sim 13$ s \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The wide separation between $\Lambda$ ($10^{-5}\unit{s}$) and the mean
+delayed-neutron lifetime ($\sim 13\unit{s}$) is the numerical statement of why
+delayed neutrons make reactors controllable, and why crossing $\rho=\beta$ removes
+that protection.

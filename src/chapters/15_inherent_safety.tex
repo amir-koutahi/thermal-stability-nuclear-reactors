@@ -1,0 +1,111 @@
+\chapter{Inherent and Passive Safety in Modern Designs}
+\label{ch:inherent}
+
+The lesson of Chernobyl---that safety must live in the physics, not in perfect
+operation---has shaped reactor design ever since. This chapter surveys how modern
+reactors build in negative feedback and passive heat removal so that thermal
+stability and decay-heat safety are guaranteed by nature rather than by
+intervention.
+
+\section{Inherent vs.\ engineered safety}
+
+\emph{Engineered} safety relies on active systems---pumps, valves, diesel
+generators, operator actions---to respond to upsets. \emph{Inherent} safety relies
+on the physical properties of the reactor: feedback coefficients, material
+choices, and geometry that make dangerous states physically self-correcting or
+unreachable. \emph{Passive} safety relies on natural forces---gravity, natural
+circulation, conduction, stored coolant---that need no power or operator action.
+The modern ideal combines all three with defence in depth, but assigns the
+foundational role to inherent and passive features, precisely because Chernobyl,
+TMI, and Fukushima showed that active systems and operators can fail.
+
+\section{Designing in negative feedback}
+
+The first principle is a \textbf{negative power coefficient across all operating
+states}. This is achieved through:
+\begin{itemize}[nosep]
+\item \textbf{Under-moderation} in light-water reactors, guaranteeing negative
+moderator and void coefficients (the opposite of the RBMK).
+\item Strong \textbf{Doppler feedback} from fertile resonance absorbers
+($^{238}$U, $^{240}$Pu), giving a prompt negative coefficient that limits
+excursions.
+\item Avoidance of positive void pathways: no graphite-decoupled-from-coolant
+geometry, and shutdown systems that insert only negative reactivity.
+\end{itemize}
+Licensing in most countries requires demonstrating a negative power coefficient and
+analysing reactivity-initiated accidents to show self-limitation. The RBMK's
+positive void coefficient would not be licensable under such rules.
+
+\section{Passive decay-heat removal}
+
+Because decay heat (Chapter~\ref{ch:decay}) is irreducible, modern designs provide
+\emph{passive} paths to remove it without power. Examples include gravity-driven
+core flooding, natural-circulation cooling loops, large elevated water pools that
+boil off over days, and---in some advanced designs---heat conduction to the ground
+or air. The goal is a reactor that can survive a complete station blackout (as at
+Fukushima) for an extended ``grace period'' with no operator action and no
+electrical power. The AP1000, for instance, is designed to remove decay heat
+passively for about three days using stored water and natural circulation.
+
+\section{Generation III+ light-water reactors}
+
+Evolutionary designs (AP1000, EPR, and others) retain the proven negative-feedback
+physics of the PWR and add passive safety systems, larger water inventories,
+core-catchers to contain molten fuel, and digital protection. They are, in
+stability terms, conservative: their inherent feedback is strongly negative and
+their innovations are mostly in passive heat removal and containment. They embody
+the direct engineering response to the failure modes of TMI, Chernobyl, and
+Fukushima.
+
+\section{Generation IV and advanced reactors}
+
+More radical designs pursue inherent safety through different physics:
+\begin{itemize}[nosep]
+\item \textbf{High-temperature gas reactors} (HTGR) use TRISO fuel particles that
+retain fission products to very high temperatures and a core whose large negative
+temperature coefficient and low power density allow it to shed decay heat by
+conduction and radiation alone---it cannot melt even with no cooling.
+\item \textbf{Molten-salt reactors} carry fuel dissolved in a liquid salt with a
+strongly negative temperature/expansion coefficient and a passive
+``freeze-plug'' drain that empties the core into safe geometry on loss of power.
+\item \textbf{Sodium-cooled fast reactors} can be designed with strong negative
+expansion feedback; the EBR-II tests in 1986---the same year as Chernobyl---famously
+demonstrated survival of a complete loss of flow \emph{without scram} purely
+through inherent feedback.
+\item \textbf{Lead-cooled and heat-pipe microreactors} pursue similar
+walk-away-safe goals with passive heat transport.
+\end{itemize}
+The unifying theme is the same principle this book has developed: make the
+dominant feedback strongly negative and provide a passive path for decay heat, so
+that the reactor is safe \emph{by physics}.
+
+\section{The EBR-II demonstration: the anti-Chernobyl}
+
+It is worth pausing on a remarkable coincidence of timing. On 3~April 1986---just
+three weeks before Chernobyl---engineers at the Experimental Breeder Reactor~II
+(EBR-II) in Idaho deliberately subjected the reactor to a complete
+\emph{loss-of-flow-without-scram} test at full power: they cut the coolant pumps
+and disabled the automatic shutdown. Rather than melting, the reactor's strong
+\emph{negative} reactivity feedback (from thermal expansion of the metallic fuel
+and structure) reduced the power as temperatures rose, and the reactor settled to a
+safe, low-power state on its own. The same week, two reactors on opposite sides of
+the world were pushed beyond their protection systems; one destroyed itself and a
+region, the other quietly proved that inherent negative feedback is the surest
+safety system of all. The contrast is the thesis of this book in a single image.
+
+\keypoint{Modern reactor safety is founded on inherent negative feedback (a
+negative power coefficient guaranteed across all states) and passive decay-heat
+removal (natural forces that need no power or operators). EBR-II's 1986
+loss-of-flow-without-scram test is the positive mirror image of Chernobyl:
+inherent negative feedback turning a would-be accident into a non-event.}
+
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Distinguish inherent, passive, and engineered safety with an example of each.
+\item Explain how under-moderation guarantees a negative void coefficient.
+\item Describe one passive decay-heat removal strategy and the grace period it provides.
+\item Summarise the EBR-II 1986 loss-of-flow-without-scram test and why it is the ``anti-Chernobyl''.
+\item For an HTGR with TRISO fuel, explain why the core ``cannot melt'' even without active cooling.
+\end{enumerate}

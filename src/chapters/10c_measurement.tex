@@ -1,0 +1,80 @@
+\chapter{Measuring Reactivity and Feedback Coefficients}
+\label{ch:measure}
+
+A reactor's stability rests on the signs and magnitudes of its feedback
+coefficients. These are not merely calculated; they are \emph{measured}, both
+during commissioning and periodically through life. This chapter surveys the
+experimental methods, which double as a practical illustration of the kinetics
+theory and underline a sobering point: the RBMK's dangerous coefficients were, in
+principle, measurable and partly known.
+
+\section{Static and dynamic reactivity measurement}
+
+\textbf{Rod-drop and source-jerk methods} infer reactivity from the transient
+following a sudden change. In a rod-drop, a calibrated rod is dropped and the
+prompt power decrease is fitted to the point-kinetics solution to extract the
+inserted negative reactivity. \textbf{Rod-oscillator methods} insert a sinusoidal
+reactivity and measure the power response; the amplitude and phase give the
+zero-power transfer function $Z(j\omega)$ of Chapter~\ref{ch:linear} directly,
+mapping the reactor's dynamic response across frequency. \textbf{Inverse
+kinetics}---solving the point-kinetics equations ``backwards'' for $\rho(t)$ given a
+measured power trace---is the basis of the modern \emph{reactivity meter}, a
+real-time instrument used during physics testing.
+
+\section{Period measurement and the inhour calibration}
+
+The simplest reactivity measurement is the \emph{positive-period} method: insert a
+small known reactivity, measure the resulting stable period, and confirm it against
+the inhour equation \eqref{eq:inhour}. This both measures reactivity and validates
+the kinetics data. The agreement between measured periods and the inhour prediction
+(Figure~\ref{fig:inhour}) is, in effect, a routine check that the reactor's
+delayed-neutron parameters and generation time are as expected.
+
+\section{Measuring temperature and void coefficients}
+
+The \textbf{isothermal temperature coefficient} is measured at low power by slowly
+heating the whole coolant/moderator system (using pump heat, with the reactor just
+critical) and recording the compensating rod motion: the rod worth needed to hold
+criticality per degree is the coefficient. The \textbf{moderator temperature
+coefficient (MTC)} and \textbf{Doppler (fuel) coefficient} can be separated by
+exploiting their different timescales---the fuel responds promptly, the moderator
+with the coolant transport delay---using power-oscillation or noise techniques. The
+\textbf{void coefficient} is inferred from controlled changes in boiling or
+moderator level, or in test reactors by deliberately introducing voids. The
+\textbf{power coefficient} is measured directly by recording the reactivity
+(via the reactivity meter) required to change power.
+
+\section{Noise analysis: listening to the reactor}
+
+A powerful, non-invasive technique is \emph{reactor noise analysis}. The neutron
+flux fluctuates around its mean due to the statistical nature of fission and the
+reactor's dynamic response; the spectrum of these fluctuations encodes the
+transfer function and hence the feedback. Measuring the \emph{decay ratio}
+(Chapter~\ref{ch:linear}) from the autocorrelation of small flux oscillations is
+the standard method for monitoring BWR stability margins online---a direct,
+continuous read on how close the reactor is to the oscillatory stability boundary.
+
+\begin{remark}[The knowable danger]
+The RBMK's positive void coefficient and the positive scram effect were, in
+principle, measurable quantities, and the scram anomaly had in fact been observed
+at the Ignalina plant in 1983. The tragedy is not that the danger was unmeasurable
+but that the measurements and observations were not translated into design fixes,
+clear operating limits, and operator understanding. Measurement is only the first
+step; acting on it is safety.
+\end{remark}
+
+\keypoint{Feedback coefficients are measured by rod-drop, oscillator, inverse
+kinetics, isothermal heating, and noise methods, and validated against the inhour
+equation. The RBMK's destabilising coefficients were measurable and partly
+observed; the failure was organisational---not converting knowledge into design
+changes and enforced limits.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Describe the rod-drop method for measuring reactivity.
+\item How does a rod oscillator measure the zero-power transfer function?
+\item Outline how the isothermal temperature coefficient is measured.
+\item Explain how reactor noise analysis monitors BWR stability margins.
+\item Discuss why the RBMK danger was knowable yet not acted upon.
+\end{enumerate}

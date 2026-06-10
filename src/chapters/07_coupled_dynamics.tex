@@ -1,0 +1,99 @@
+\chapter{Coupled Neutronic--Thermal-Hydraulic Dynamics}
+\label{ch:coupled}
+
+We now assemble the pieces---point kinetics, lumped thermal model, and feedback
+coefficients---into a single coupled dynamical system and explore its qualitative
+behaviour before the formal stability analysis of Part~III.
+
+\section{The closed-loop model}
+
+Combining the point kinetics \eqref{eq:prk}, the lumped thermal model of
+Chapter~\ref{ch:thermal}, and the feedback law \eqref{eq:rho-feedback}, a compact
+representative model is
+\begin{align}
+\frac{\dd p}{\dd t} &= \frac{\rho(t)-\beta}{\Lambda}\,p + \sum_i \lambda_i \zeta_i,\\
+\frac{\dd \zeta_i}{\dd t} &= \frac{\beta_i}{\Lambda}\,p - \lambda_i \zeta_i,\\
+C_f\frac{\dd \Tf}{\dd t} &= P_0\,p - U\!A\,(\Tf-\Tc),\\
+C_c\frac{\dd \Tc}{\dd t} &= U\!A\,(\Tf-\Tc) - 2\dot m c_c(\Tc-T_{in}),\\
+\rho(t) &= \rho_{ext}(t) + \alpha_D(\Tf-\Tf^0) + \alpha_c(\Tc-\Tc^0).
+\end{align}
+This is a system of nonlinear ordinary differential equations: nonlinear because
+reactivity multiplies power in the first equation, and reactivity itself depends
+on the temperatures driven by power. The nonlinearity is essential---it is what
+makes a power excursion turn over rather than grow forever---but it also makes the
+behaviour rich.
+
+\section{The self-regulating reactor in words}
+
+Before any mathematics, the qualitative behaviour of a \emph{negative-feedback}
+reactor is worth stating plainly. Suppose the operator withdraws a control rod,
+inserting positive $\rho_{ext}$. Power rises. The fuel heats within milliseconds;
+if $\alpha_D<0$, this immediately subtracts reactivity, blunting the rise. As the
+coolant heats over the next second, $\alpha_c<0$ subtracts more. The reactor
+settles at a higher power and temperature at which the feedback exactly cancels
+the inserted reactivity: a new stable operating point. The reactor has
+\emph{regulated itself} without any control action. Conversely, if the operator
+reduces power, temperatures fall, feedback adds reactivity, and the fall is
+arrested. This is the everyday meaning of a negative power coefficient.
+
+Now reverse the sign of the dominant feedback, as in the RBMK at low power. The
+rod withdrawal raises power; boiling increases; the positive void coefficient
+adds \emph{more} reactivity; power rises further; and unless a strong prompt
+negative effect intervenes, the excursion accelerates. The same control action
+that a stable reactor absorbs, the unstable one amplifies.
+
+\section{Equilibrium and the power defect}
+
+At equilibrium the time derivatives vanish and the feedback exactly offsets the
+external reactivity. The total reactivity that must be supplied by control to
+hold the reactor critical from cold-zero-power to hot-full-power is the
+\textbf{power defect},
+\begin{equation}
+\Delta\rho_{\text{defect}} = -\!\int_0^{P_0}\!\alpha_P\,\dd P,
+\end{equation}
+which for a negative power coefficient is positive (control must \emph{add}
+reactivity to reach full power, because the feedback removes it). The power defect
+is a useful integral measure of how strongly self-regulating a reactor is, and it
+must be matched by available control-rod and chemical-shim worth.
+
+\section{Linearisation preview}
+
+For small perturbations about an operating point, write $p=p_0+\delta p$,
+$\Tf=\Tf^0+\delta \Tf$, etc., and keep first-order terms. The linearised system
+has the form $\dot{\mathbf x}=\mathbf A\,\mathbf x + \mathbf b\,\rho_{ext}$, and
+its stability is decided by the eigenvalues of the matrix $\mathbf A$: the
+operating point is stable if and only if all eigenvalues have negative real part.
+The feedback coefficients enter $\mathbf A$ directly, so the sign and magnitude of
+$\alpha_D$, $\alpha_c$, and $\alpha_v$ determine the eigenvalues' signs. This is
+the formal content of Chapter~\ref{ch:linear}, where we also pass to the frequency
+domain and the Nyquist criterion, which handles the transport delays more
+naturally than eigenvalues alone.
+
+\section{A demonstration of self-limitation}
+
+Figure~\ref{fig:transients} (bottom right) already showed the canonical result:
+a reactivity-initiated excursion that, with negative feedback, rises to a peak and
+then turns over as the heating fuel removes reactivity. The peak power, the time
+to peak, and the total energy released are set by the competition between the
+inserted reactivity and the feedback strength---precisely the Nordheim--Fuchs
+balance derived in Chapter~\ref{ch:nonlinear}. The same model with the feedback
+sign flipped does not turn over; it diverges until the model's assumptions break.
+The entire safety case of an inherently stable reactor rests on getting that sign
+right and the magnitude large enough.
+
+\keypoint{The coupled model is nonlinear, but its stability is governed by a
+simple principle: the feedback must remove reactivity as power and temperature
+rise, and it must do so promptly enough. Part~III makes ``promptly enough''
+precise through eigenvalues and the Nyquist criterion; Part~IV shows what the
+violation of this principle looked like in practice.}
+
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Describe in words the self-regulating response of a negative-feedback reactor to a rod withdrawal.
+\item Define the power defect and explain its sign for a negative power coefficient.
+\item Explain how the feedback coefficients enter the linearised system matrix and why feedback is more potent at higher power.
+\item Sketch the qualitative power response of a reactor with positive feedback to a small rod withdrawal.
+\item Why does a nonlinear feedback model produce a power excursion that turns over, while a linear analysis cannot capture the turnover?
+\end{enumerate}

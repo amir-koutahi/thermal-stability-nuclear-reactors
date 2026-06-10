@@ -1,0 +1,128 @@
+\chapter{Nonlinear Power Excursions}
+\label{ch:nonlinear}
+
+Linear analysis tells us whether an operating point is stable. When a reactor is
+driven hard---a large, fast reactivity insertion---the response is fully
+nonlinear, and the question becomes: how high does the power spike, how much
+energy is deposited, and what stops it? The classic answer is the
+Nordheim--Fuchs model, which gives a remarkably clean closed-form description of a
+self-limiting prompt excursion. This is the model that quantifies what a
+\emph{thermally stable} reactor does when subjected to a reactivity-initiated
+accident---and, by its failure, what Chernobyl did.
+
+\section{The reactivity-initiated accident}
+
+A reactivity-initiated accident (RIA) is a rapid insertion of positive
+reactivity---an ejected control rod, a cold-water slug, or, at Chernobyl, the
+catastrophic positive scram. If the insertion exceeds one dollar, the reactor
+becomes prompt-critical and the power rises on the $\Lambda$ timescale, far too
+fast for delayed neutrons or mechanical systems to matter. The only thing that can
+arrest it is prompt feedback. Whether the excursion is a benign, self-terminating
+spike or an explosive energy release depends entirely on the sign and strength of
+that prompt feedback.
+
+\section{The Nordheim--Fuchs model}
+
+Consider a step insertion $\rho_0>\beta$ on a prompt-critical reactor with prompt
+negative feedback. On the prompt timescale the delayed neutrons are a nearly
+constant background, so we drop the precursor term and write the prompt kinetics
+\begin{equation}
+\frac{\dd p}{\dd t} = \frac{\rho(t)-\beta}{\Lambda}\,p,
+\end{equation}
+with feedback through an adiabatically heating fuel (Chapter~\ref{ch:thermal}),
+\begin{equation}
+\rho(t) = \rho_0 - \gamma\,\big(E(t)\big),\qquad
+\frac{\dd E}{\dd t} = p,
+\end{equation}
+where $E(t)=\int_0^t p\,\dd t'$ is the energy released and $\gamma>0$ is the
+magnitude of the (negative) feedback per unit energy---the product of the fuel
+heat capacity and the temperature coefficient, $\gamma=|\alpha|/C$. Writing the
+prompt reactivity above critical as $\rho_0-\beta$ and feedback $-\gamma E$, the
+power is
+\begin{equation}
+\frac{\dd p}{\dd t} = \frac{(\rho_0-\beta) - \gamma E}{\Lambda}\,p.
+\end{equation}
+Using $\dd p/\dd t = (\dd p/\dd E)\,p$ and integrating once,
+\begin{equation}
+p(E) = p_0 + \frac{1}{\Lambda}\!\left[(\rho_0-\beta)E - \tfrac12\gamma E^2\right].
+\end{equation}
+
+\section{Peak power, energy, and temperature rise}
+
+The power peaks when $\dd p/\dd t=0$, i.e.\ when the feedback exactly cancels the
+prompt reactivity, $\gamma E_{\text{peak}} = \rho_0-\beta$, so the energy released
+at the peak is
+\begin{equation}
+\boxed{\ E_{\text{peak}} = \frac{\rho_0-\beta}{\gamma}\ }
+\end{equation}
+The excursion does not stop here---the power is maximal, not zero---but the
+feedback now drives the reactivity below prompt-critical and the power falls. The
+total energy released as the prompt spike completes is, by the symmetry of the
+parabola $p(E)$, twice the energy at the peak:
+\begin{equation}
+\boxed{\ E_{\text{total}} \approx \frac{2(\rho_0-\beta)}{\gamma}\ }
+\end{equation}
+and the peak power is
+\begin{equation}
+p_{\max} \approx \frac{(\rho_0-\beta)^2}{2\gamma\Lambda}.
+\end{equation}
+The corresponding adiabatic fuel temperature rise is
+$\Delta \Tf = E_{\text{total}}/C = 2(\rho_0-\beta)/(\gamma C)$. These formulae are
+the quantitative essence of self-limitation: the stronger the negative feedback
+$\gamma$, the smaller the energy release and temperature rise; the larger the
+prompt reactivity excess $\rho_0-\beta$, the larger and sharper the spike.
+
+\begin{example}[A benign spike vs.\ a destructive one]
+With prompt feedback strong enough that $\gamma$ limits $\Delta \Tf$ to a few
+hundred kelvin, an RIA produces a fast spike that the fuel survives---this is the
+designed-for behaviour validated in tests such as SPERT and BORAX. If instead the
+\emph{net} prompt feedback is weak, near zero, or---catastrophically---positive,
+$E_{\text{total}}$ grows without the parabolic turnover, the temperature rise is
+unbounded in the model, and in reality the energy deposition fragments the fuel,
+flashes the coolant, and disassembles the core. Chernobyl's excursion deposited
+enough energy in a fraction of a second to shatter the fuel and trigger a steam
+explosion, precisely because the prompt feedback in its configuration was not
+saving-ly negative.
+\end{example}
+
+\section{Self-disassembly and the ultimate shutdown}
+
+In the most violent excursions a second, brutal feedback eventually intervenes:
+the core physically disassembles. Thermal expansion, fuel vaporisation, and
+pressure-driven dispersal increase neutron leakage and separate the fissile
+material, terminating the chain reaction---the Fuchs--Hansen ``disassembly''
+mechanism that ended the historical criticality excursions (SL-1, the Godiva and
+SPERT destructive tests). Disassembly is a shutdown mechanism only in the sense
+that an explosion ends a chain reaction: it does so by destroying the reactor. The
+purpose of thermal stability and prompt negative feedback is to terminate the
+excursion by gentle means---temperature feedback---long before disassembly is
+reached.
+
+\section{Connection to the linear picture}
+
+The Nordheim--Fuchs excursion and the linear stability of Chapter~\ref{ch:linear}
+are two limits of the same coupled system. Linear analysis governs small
+perturbations about an operating point and asks whether they grow; the
+Nordheim--Fuchs analysis governs the large, fast, prompt-critical transient and
+asks how the nonlinear feedback caps it. A reactor that is linearly stable with
+strong negative feedback is also the one whose Nordheim--Fuchs excursions are
+mild. A reactor that is linearly unstable---positive feedback---has no benign
+nonlinear limit; its excursions terminate only by disassembly. The companion
+computations of Chapter~\ref{ch:comp} show both behaviours side by side.
+
+\keypoint{In a prompt-critical excursion, prompt negative feedback caps the energy
+release at $E_{\text{total}}\approx 2(\rho_0-\beta)/\gamma$ and the reactor
+survives. Without net negative prompt feedback there is no such cap, and the
+excursion ends only by destroying the core. Thermal stability is the difference
+between a spike and an explosion.}
+
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Derive $E_{\text{peak}}=(\rho_0-\beta)/\gamma$ from the Nordheim--Fuchs model.
+\item Show that the total energy release is approximately $2(\rho_0-\beta)/\gamma$.
+\item How does the peak power scale with the prompt reactivity excess and the feedback strength?
+\item What physically terminates an excursion when prompt feedback is absent?
+\item Relate the sign of the feedback in the Nordheim--Fuchs model to the linear stability of Chapter 8.
+\end{enumerate}

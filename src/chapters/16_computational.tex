@@ -1,0 +1,118 @@
+\chapter{Computational Modelling of Reactor Dynamics}
+\label{ch:comp}
+
+The theory of the preceding chapters becomes vivid when integrated numerically.
+This chapter describes a small, open-source point-reactor-kinetics toolkit written
+to accompany this book, shows the transients it produces, and uses it to make the
+stability principles concrete---including a numerical caricature of the Chernobyl
+feedback failure.
+
+\section{A minimal point-kinetics solver}
+
+The companion code, \texttt{reactor-kinetics}, couples validated delayed-neutron
+data to a stiff ODE integrator with optional temperature feedback. Its core is the
+six-group point kinetics of Chapter~\ref{ch:pk} together with the adiabatic
+feedback model of Chapters~\ref{ch:thermal} and~\ref{ch:nonlinear}:
+\begin{align*}
+\frac{\dd p}{\dd t} &= \frac{\rho(t)-\beta}{\Lambda}p + \sum_i\lambda_i\zeta_i,\quad
+\frac{\dd \zeta_i}{\dd t} = \frac{\beta_i}{\Lambda}p - \lambda_i\zeta_i,\\
+\frac{\dd T}{\dd t} &= \frac{P_0\,p}{C},\qquad
+\rho(t) = \rho_{ext}(t) + \alpha\,(T-T_0).
+\end{align*}
+Because $\Lambda\sim 10^{-5}\unit{s}$ while the precursor times are seconds, the
+system is stiff; the solver uses an implicit/adaptive method (LSODA). Delayed-neutron
+parameters are taken from validated $^{235}$U data (Appendix~\ref{app:data}).
+
+\section{Verification against the inhour equation}
+
+A dynamics code is only trustworthy if it reproduces known analytical results. The
+toolkit's asymptotic period, measured from simulated power traces, matches the
+inhour equation \eqref{eq:inhour} to better than $10^{-4}$ across a range of step
+reactivities (Figure~\ref{fig:inhour}). This agreement validates both the solver
+and the kinetics implementation, and it reproduces the steep collapse of the period
+as reactivity approaches one dollar---the quantitative warning sign of approaching
+prompt criticality.
+
+\section{A gallery of transients}
+
+Figure~\ref{fig:transients} collects four canonical transients computed with the
+toolkit, each illustrating a principle from earlier chapters:
+
+\begin{enumerate}[nosep]
+\item \textbf{Sub-prompt step ($+0.3\$$).} A prompt jump
+(Eq.~\ref{eq:promptjump}) followed by a slow rise on a stable delayed-neutron
+period---the controllable regime.
+\item \textbf{Prompt-critical step ($+1.2\$$).} Runaway growth on the prompt
+timescale (note the logarithmic axis), the signature of crossing one dollar.
+\item \textbf{Control-rod scram.} A negative ramp drives the power down, with the
+characteristic delayed-neutron tail as the precursors decay.
+\item \textbf{Reactivity-initiated excursion with feedback.} A prompt-critical
+insertion limited by negative temperature feedback: the power peaks and turns
+over, the Nordheim--Fuchs self-limitation of Chapter~\ref{ch:nonlinear}.
+\end{enumerate}
+
+The fourth panel is the crux. With negative feedback the excursion is capped and
+the reactor survives. The exercise below shows what happens when the feedback sign
+is wrong.
+
+\section{A numerical caricature of the Chernobyl feedback failure}
+
+The toolkit makes it easy to flip the sign of the feedback and watch stability
+turn into instability. Consider two runs with identical prompt-critical insertions
+($\rho_0\approx 1.05\$$):
+
+\begin{itemize}[nosep]
+\item \textbf{Negative feedback} ($\alpha<0$, the well-designed reactor): the
+fuel heats, reactivity falls, and the power excursion turns over at a finite peak,
+depositing a bounded energy $E_{\text{total}}\approx 2(\rho_0-\beta)/\gamma$
+(Chapter~\ref{ch:nonlinear}). The reactor self-limits.
+\item \textbf{Positive feedback} ($\alpha>0$, the Chernobyl-like configuration):
+the rising power adds further reactivity, there is no turnover, and the power grows
+until the model's adiabatic assumptions break---representing, in reality, fuel
+fragmentation, coolant flashing, and disassembly.
+\end{itemize}
+
+This two-line change in a parameter reproduces, in caricature, the essential
+physics of the accident: the difference between Chernobyl and a survivable RIA is
+the \emph{sign of} $\alpha$. The toolkit also includes a model void/temperature
+feedback that becomes positive at low ``power,'' qualitatively mimicking the RBMK's
+low-power instability window of Chapter~\ref{ch:linear}.
+
+\begin{remark}[On responsible modelling]
+The companion code is an educational point-kinetics tool. It is deliberately
+\emph{not} a high-fidelity simulation of any specific reactor: it uses lumped
+parameters, an adiabatic feedback, and generic data. Its value is pedagogical---to
+let a reader reproduce the inhour equation, watch a prompt-critical excursion, and
+see negative feedback cap it---not to model a real plant, which requires validated,
+qualified codes (e.g.\ coupled neutronics/thermal-hydraulics systems) far beyond a
+point model.
+\end{remark}
+
+\section{Toward higher fidelity}
+
+Real safety analysis goes well beyond point kinetics. Spatial effects
+(Chapter~\ref{ch:xenon}) demand at least nodal or full three-dimensional
+neutronics coupled to a multi-channel thermal-hydraulics solver; the RBMK's size
+made such spatial modelling essential, and core-average point parameters
+understated the danger. Modern coupled codes solve the time-dependent
+neutron-transport (or diffusion) equation on a spatial mesh, feed local powers to a
+thermal-hydraulic subchannel model, and return local temperatures and densities as
+feedback---closing the loop of Chapter~\ref{ch:coupled} cell by cell. The point
+model of this chapter is the conceptual seed of those codes, and the place to build
+intuition before trusting their output.
+
+\keypoint{A small point-kinetics code reproduces the inhour equation to $10^{-4}$,
+displays the canonical transients, and---by flipping the sign of the feedback
+coefficient---turns a self-limiting excursion into a Chernobyl-like runaway. The
+sign of the feedback is, numerically as well as physically, the whole story.}
+
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Why must a point-kinetics solver use a stiff integration method?
+\item Describe how to validate a dynamics code against the inhour equation.
+\item Explain what changes in the model output when the feedback coefficient sign is flipped.
+\item What are the limitations of a lumped point-kinetics model for analysing a real, large reactor?
+\item Outline what a higher-fidelity coupled neutronics/thermal-hydraulics code adds over a point model.
+\end{enumerate}

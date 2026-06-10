@@ -1,0 +1,62 @@
+\chapter{Worked Numerical Examples}
+\label{app:worked}
+
+This appendix collects fully worked numerical examples that tie the theory to
+concrete numbers. Throughout, $\beta=0.0065$, $\Lambda=1.1\times10^{-5}\,$s, and
+the six-group $^{235}$U data of Appendix~\ref{app:data} are used unless stated.
+
+\section*{Example E.1: Reactivity conversions}
+A reactor has $\keff=1.0013$. The reactivity is
+$\rho=(\keff-1)/\keff = 0.0013/1.0013 \approx 1.30\times10^{-3} = 130\,$pcm. In
+dollars, $\$=\rho/\beta = 0.0013/0.0065 = 0.20\,\$$. This is a modest,
+delayed-critical insertion---well below the one-dollar prompt-critical threshold.
+
+\section*{Example E.2: Prompt jump}
+For a step insertion of $\rho=0.20\,\$=0.0013$, the prompt-jump factor is
+$\beta/(\beta-\rho)=0.0065/(0.0065-0.0013)=0.0065/0.0052=1.25$. Power jumps
+essentially instantly to $1.25\times$ its initial value, then rises slowly on the
+delayed-neutron period.
+
+\section*{Example E.3: Stable period from the inhour equation}
+For the same $\rho=0.0013$, a one-delayed-group estimate with effective
+$\bar\lambda\approx0.08\,$s$^{-1}$ gives a dominant root from
+$\rho\approx\beta s/(s+\bar\lambda)$, i.e.\
+$s\approx \bar\lambda\,\rho/(\beta-\rho)=0.08\times0.0013/0.0052\approx0.02\,$s$^{-1}$,
+so the period $T=1/s\approx 50\,$s. The full six-group inhour solution gives a
+similar tens-of-seconds period (cf.\ Figure~\ref{fig:inhour}), confirming a slow,
+controllable transient.
+
+\section*{Example E.4: Prompt-critical excursion}
+For $\rho=1.5\,\$=0.00975$, the prompt reactivity excess is
+$\rho-\beta=0.00325$. The prompt growth rate is
+$(\rho-\beta)/\Lambda=0.00325/1.1\times10^{-5}\approx 295\,$s$^{-1}$, an e-folding
+time of $\sim3.4\,$ms. In $20\,$ms the power grows by
+$e^{295\times0.02}=e^{5.9}\approx 365$. This is the regime in which only prompt
+feedback---not control---can intervene.
+
+\section*{Example E.5: Nordheim--Fuchs energy release}
+Take $\rho_0=1.2\,\$=0.0078$, so $\rho_0-\beta=0.0013$. Suppose the feedback
+parameter is $\gamma=|\alpha|/C$ with $|\alpha|=3\times10^{-5}\,$K$^{-1}$ and
+$C=5\times10^{4}\,$J/K, giving $\gamma=6\times10^{-10}\,$J$^{-1}$. The energy at
+peak is $E_{\text{peak}}=(\rho_0-\beta)/\gamma=0.0013/6\times10^{-10}\approx
+2.2\times10^{6}\,$J, and the total prompt-spike energy is about
+$4.3\times10^{6}\,$J. The adiabatic fuel temperature rise is
+$\Delta T=E_{\text{total}}/C\approx 87\,$K---a survivable spike, illustrating
+self-limitation by negative feedback. Had $\alpha$ been positive, no such cap
+would exist.
+
+\section*{Example E.6: Decay-heat heat-up}
+A $3000\,$MW$_\text{th}$ core loses cooling just after shutdown with $6\%$ decay
+heat, i.e.\ $q=1.8\times10^{8}\,$W. With core thermal mass $C=1.0\times10^{7}\,$J/K,
+the adiabatic heat-up rate is $\dot T=q/C=18\,$K/s. To rise $2000\,$K toward fuel
+melting takes about $110\,$s---under two minutes---quantifying the absolute need
+for assured decay-heat removal.
+
+\section*{Example E.7: Void feedback loop gain (illustrative)}
+Suppose a power increase of $10\%$ raises the core-average void fraction by
+$0.02$, and the void coefficient is $\alpha_v=+1.5\,\$$ per unit void fraction
+(an RBMK-like positive value at low power). The feedback reactivity is
+$\Delta\rho=+0.02\times1.5=+0.03\,\$$. Positive feedback of this sign and size,
+unopposed by sufficient prompt Doppler, drives the power further up---the unstable
+loop. The same calculation with $\alpha_v<0$ (a PWR) yields negative feedback and
+a self-correcting response.

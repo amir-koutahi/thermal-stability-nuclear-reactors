@@ -1,0 +1,60 @@
+This book is written for advanced undergraduates, graduate students, and
+practising engineers who want a unified, self-contained account of why reactors
+are (or are not) stable, and what happens physically when stability is lost. It
+assumes a working knowledge of multivariable calculus, ordinary differential
+equations, and undergraduate physics. No prior course in nuclear engineering is
+strictly required: the necessary reactor physics is built up from the neutron
+balance in Chapters~2 and~3.
+
+\section*{Organisation}
+
+The book is organised into five parts and a set of appendices.
+
+\textbf{Part I (Foundations of Reactor Dynamics)} establishes the language:
+fission, the multiplication factor and reactivity, the point reactor kinetics
+equations and the indispensable role of delayed neutrons, and the decay-heat
+source that persists long after the chain reaction stops.
+
+\textbf{Part II (Heat Transport and Reactivity Feedback)} follows the energy from
+its birth in the fuel to its removal by the coolant, and then introduces the
+feedback coefficients that close the loop between temperature and reactivity.
+
+\textbf{Part III (Stability Theory)} treats stability quantitatively, first by
+linearisation and frequency-domain methods, then through the nonlinear physics
+of power excursions, and finally through the slow, spatial instabilities driven
+by xenon-135.
+
+\textbf{Part IV (Historical Lessons)} applies the theory to real machines. After
+a survey of earlier events, it examines the RBMK-1000 design in detail, then
+reconstructs and analyses the Chernobyl accident.
+
+\textbf{Part V (Modern Practice and Synthesis)} describes how the lessons are
+embodied in contemporary designs that aim for inherent and passive safety, and
+demonstrates the dynamics computationally before drawing the threads together.
+
+\section*{A note on conventions}
+
+Reactivity is expressed both as an absolute fraction $\rho$ (units of $\Delta
+k/k$, often quoted in per-cent-mille, pcm, where $1\unit{pcm}=10^{-5}$) and in
+\emph{dollars}, $\rho/\beta$, where $\beta$ is the total delayed-neutron
+fraction. One dollar of reactivity is the boundary of prompt criticality and is
+the natural yardstick for transient severity. Temperatures are in kelvin or
+degrees Celsius as convenient. SI units are used throughout. Numerical examples
+use validated delayed-neutron data for $^{235}$U; the full data set appears in
+Appendix~A.
+
+\section*{Companion software}
+
+Several figures and worked transients in this book were produced with a small,
+open-source point-reactor-kinetics toolkit written by the author. The code,
+which couples validated kinetics data to a stiff ODE solver with temperature
+feedback, is referenced in Chapter~16 and is freely available. Readers are
+encouraged to reproduce and extend the examples.
+
+\section*{Scope and disclaimer}
+
+This is an educational and historical work. It deliberately discusses reactor
+behaviour at the level of physical principle and published, openly available
+engineering knowledge. It is \emph{not} an operating procedure, a design
+specification, or a safety-analysis report, and nothing in it should be used as
+such.

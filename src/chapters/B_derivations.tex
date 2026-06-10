@@ -1,0 +1,60 @@
+\chapter{Selected Derivations}
+\label{app:deriv}
+
+\section{The inhour equation from point kinetics}
+
+Starting from the point kinetics \eqref{eq:prk} with constant $\rho$, seek
+solutions $n=n_0e^{st}$ and $C_i=C_{i0}e^{st}$. The precursor equation gives
+\begin{equation}
+s\,C_{i0} = \frac{\beta_i}{\Lambda}n_0 - \lambda_i C_{i0}
+\ \Rightarrow\
+C_{i0} = \frac{\beta_i\,n_0}{\Lambda(s+\lambda_i)}.
+\end{equation}
+Substituting into the neutron equation,
+\begin{equation}
+s\,n_0 = \frac{\rho-\beta}{\Lambda}n_0
+        + \sum_i \lambda_i \frac{\beta_i n_0}{\Lambda(s+\lambda_i)}.
+\end{equation}
+Divide by $n_0/\Lambda$ and rearrange, using
+$\lambda_i/(s+\lambda_i) = 1 - s/(s+\lambda_i)$:
+\begin{equation}
+\Lambda s = \rho - \beta + \sum_i \beta_i\Big(1-\frac{s}{s+\lambda_i}\Big)
+          = \rho - \sum_i \frac{\beta_i s}{s+\lambda_i},
+\end{equation}
+which gives the inhour equation \eqref{eq:inhour},
+\(
+\rho = \Lambda s + \sum_i \beta_i s/(s+\lambda_i).
+\)
+The function on the right has simple poles at $s=-\lambda_i$ and is monotonic
+between consecutive poles, guaranteeing exactly one real root in each of the
+intervals separated by the poles---hence $G+1$ real roots for $G$ groups, with the
+dominant root carrying the sign of $\rho$.
+
+\section{The prompt-jump approximation}
+
+For a step $\rho<\beta$ at $t=0$, immediately after the step the precursor
+concentrations retain their pre-step equilibrium values $C_{i0}=\beta_i
+n_{0}/(\lambda_i\Lambda)$, so $\sum_i\lambda_i C_{i0}=\beta n_{0}/\Lambda$.
+Treating the prompt dynamics as instantaneous, set $\dd n/\dd t\approx 0$:
+\begin{equation}
+0 \approx \frac{\rho-\beta}{\Lambda}n(0^+) + \frac{\beta}{\Lambda}n(0^-)
+\ \Rightarrow\
+n(0^+) = \frac{\beta}{\beta-\rho}\,n(0^-),
+\end{equation}
+the prompt-jump factor \eqref{eq:promptjump}. The approximation holds when the
+prompt timescale $\Lambda/(\beta-\rho)$ is much shorter than the precursor
+timescales $1/\lambda_i$, i.e.\ away from prompt criticality.
+
+\section{The Nordheim--Fuchs energy release}
+
+From Chapter~\ref{ch:nonlinear}, with prompt kinetics and adiabatic feedback
+$\rho=\rho_0-\gamma E$, $\dd E/\dd t=p$, the power as a function of energy is
+\begin{equation}
+p(E)=p_0+\frac{1}{\Lambda}\Big[(\rho_0-\beta)E-\tfrac12\gamma E^2\Big].
+\end{equation}
+The peak occurs at $\dd p/\dd E=0$, i.e.\ $\gamma E_{\text{peak}}=\rho_0-\beta$.
+Neglecting $p_0$, the excursion ends ($p\to 0$) when the bracket returns to zero,
+at $E_{\text{total}}=2(\rho_0-\beta)/\gamma$, twice the peak energy by the symmetry
+of the parabola. The peak power follows by substituting $E_{\text{peak}}$:
+$p_{\max}=(\rho_0-\beta)^2/(2\gamma\Lambda)$, and the adiabatic temperature rise is
+$\Delta T = E_{\text{total}}/C$.

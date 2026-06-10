@@ -1,0 +1,177 @@
+\chapter{Reactor Physics Fundamentals}
+\label{ch:physics}
+
+This chapter assembles the minimum reactor physics needed for a dynamic theory:
+fission and the neutron balance, the multiplication factor and reactivity, the
+six-factor formula, and the meaning of the neutron lifetime. Readers with a
+background in nuclear engineering may skim it; the notation introduced here is
+used everywhere later.
+
+\section{Fission and the neutron economy}
+
+When a $^{235}$U nucleus absorbs a thermal neutron it may fission, splitting into
+two fragments and releasing on average $\nu\approx 2.43$ prompt neutrons together
+with about $200\unit{MeV}$ of energy. The energy is distributed roughly as
+$168\unit{MeV}$ in the kinetic energy of the fragments (deposited essentially at
+the point of fission, in the fuel), with the remainder in prompt neutrons,
+prompt gamma rays, and---importantly for later---the radioactive decay of the
+fission products. Of the recoverable energy, about $93\%$ appears promptly and
+about $7\%$ is released later as decay heat (Chapter~\ref{ch:decay}).
+
+A self-sustaining chain reaction requires that, on average, exactly one of the
+$\nu$ neutrons from each fission goes on to cause another fission. The other
+neutrons are lost to non-fission capture (in fuel, moderator, coolant,
+structure, and control materials) or to leakage out of the core. The bookkeeping
+of these gains and losses is the neutron economy.
+
+\section{The multiplication factor and reactivity}
+
+Define the effective multiplication factor
+\begin{equation}
+\keff = \frac{\text{neutrons produced in one generation}}
+             {\text{neutrons lost (absorbed + leaked) in the preceding generation}}.
+\end{equation}
+The three regimes are
+\begin{equation}
+\keff < 1 \ (\text{subcritical}),\qquad
+\keff = 1 \ (\text{critical}),\qquad
+\keff > 1 \ (\text{supercritical}).
+\end{equation}
+A critical reactor sustains a constant population; a supercritical one grows.
+
+Because the interesting dynamics involve small departures from criticality, it is
+convenient to measure the distance from $\keff=1$ directly. The
+\textbf{reactivity} is
+\begin{equation}
+\boxed{\ \rho \equiv \frac{\keff-1}{\keff}\ }
+\label{eq:reactivity}
+\end{equation}
+which is dimensionless, zero at criticality, positive above it, and negative
+below. Reactivity is small in practice: a useful operating insertion might be a
+few hundred pcm (recall $1\unit{pcm}=10^{-5}$), and one ``dollar'' equals
+$\beta\approx 650\unit{pcm}$ for $^{235}$U. We will almost always work to first
+order in $\rho$, where $\rho\approx \keff-1$.
+
+\begin{definition}[Reactivity in dollars]
+The reactivity expressed in units of the delayed-neutron fraction,
+$\$\equiv \rho/\beta$, is the natural measure of transient severity. At
+$\rho=\beta$ ($\$=1$) the reactor is prompt-critical: the prompt neutrons alone
+sustain the chain, and delayed neutrons are no longer needed to maintain
+growth.
+\end{definition}
+
+\section{The six-factor formula}
+
+The effective multiplication factor for a finite thermal reactor factors into six
+physically distinct processes:
+\begin{equation}
+\keff = \eta\, f\, p\, \varepsilon\, P_{\!f}\, P_{\!t},
+\label{eq:sixfactor}
+\end{equation}
+where
+\begin{itemize}[nosep]
+\item $\eta$ is the reproduction factor (neutrons produced per thermal neutron
+absorbed in fuel);
+\item $f$ is the thermal utilisation (fraction of thermal absorptions occurring
+in fuel rather than in moderator, coolant, or structure);
+\item $p$ is the resonance escape probability (fraction of neutrons that slow
+past the $^{238}$U capture resonances without being absorbed);
+\item $\varepsilon$ is the fast-fission factor (a small boost from fissions
+caused by fast neutrons);
+\item $P_{\!f}$ and $P_{\!t}$ are the fast and thermal non-leakage
+probabilities.
+\end{itemize}
+The product $\eta f p \varepsilon$ is the infinite-medium multiplication factor
+$k_\infty$, and $\keff = k_\infty P_{\!f} P_{\!t}$.
+
+The value of the six-factor formula for our purposes is that it localises
+feedback. Temperature and voids do not change $\keff$ abstractly; they change
+\emph{specific factors}. The Doppler effect (Chapter~\ref{ch:feedback}) acts on
+the resonance escape probability $p$ through the broadening of the $^{238}$U
+resonances. Moderator heating and voiding act on $f$ and $p$ through changes in
+moderator density and the moderation ratio. Expansion changes leakage,
+$P_{\!f}P_{\!t}$. Tracking \emph{which} factor a given feedback alters, and with
+\emph{which sign}, is the discipline that distinguishes a stable lattice from an
+unstable one.
+
+\keypoint{Whether a reactor is under- or over-moderated is, in six-factor terms,
+a competition: voiding the coolant tends to raise $p$ (less parasitic capture
+and resonance absorption) but lower $f$ and worsen moderation. In an
+under-moderated lattice the harmful effects win and reactivity falls; in an
+over-moderated lattice (like the RBMK with its graphite) the helpful effect on
+$p$ and the loss of the water absorber win, and reactivity rises.}
+
+\section{The neutron lifetime and generation time}
+
+Two closely related timescales govern how fast the population responds.
+
+The \textbf{prompt neutron lifetime} $\ell$ is the mean time from a neutron's
+birth to its absorption or leakage. In a thermal reactor it is dominated by the
+slowing-down time plus the thermal diffusion time and is of order
+$10^{-4}\unit{s}$ in a light-water reactor, somewhat longer in a graphite system.
+
+The \textbf{prompt neutron generation time} is
+\begin{equation}
+\Lambda = \frac{\ell}{\keff}\approx \ell \quad(\keff\approx 1),
+\end{equation}
+the mean time between successive neutron generations. We use $\Lambda$ in the
+kinetics equations; for $^{235}$U thermal systems a representative value is
+$\Lambda\sim 10^{-5}\!-\!10^{-4}\unit{s}$. Its smallness is precisely why prompt
+supercriticality is so dangerous: with $\Lambda=10^{-5}\unit{s}$ and a prompt
+reactivity of just $0.2\%$, the prompt growth rate is
+$\rho_{\text{prompt}}/\Lambda\sim 200\unit{s^{-1}}$, an e-folding every
+$5\unit{ms}$.
+
+\section{Neutron flux, cross-sections, and reaction rates}
+
+The neutron flux $\phi(\mathbf r,E,t)$ is the product of neutron density and
+speed; it measures the rate at which neutrons traverse unit area. Reaction rates
+are products of flux and macroscopic cross-section,
+\begin{equation}
+R_x = \Sigma_x \phi, \qquad \Sigma_x = N\sigma_x,
+\end{equation}
+where $N$ is the number density of nuclei and $\sigma_x$ the microscopic
+cross-section for reaction $x$ (fission, capture, scattering). Cross-sections
+depend strongly on neutron energy; the resonance structure of $^{238}$U capture
+near a few eV, and the $1/v$ behaviour of many thermal absorbers, are central to
+feedback and to xenon poisoning respectively.
+
+The fission power density is
+\begin{equation}
+q'''(\mathbf r,t) = E_f\, \Sigma_f\, \phi(\mathbf r,t),
+\end{equation}
+with $E_f\approx 200\unit{MeV}$ the recoverable energy per fission. Integrated
+over the core, this is the thermal power that the kinetics equations track and
+that the thermal-hydraulic system must remove.
+
+\section{From the transport equation to point kinetics}
+
+The full description of the neutron field is the time-dependent neutron transport
+(or, in diffusion approximation, the neutron diffusion) equation, a
+seven-dimensional integro-differential equation in space, energy, angle, and
+time. For stability analysis we usually do not need its full spatial detail.
+If the spatial shape of the flux changes slowly compared with its amplitude---the
+\emph{point} approximation---we can separate variables,
+\begin{equation}
+\phi(\mathbf r,E,t)\approx \psi(\mathbf r,E)\, n(t),
+\end{equation}
+and reduce the dynamics to ordinary differential equations for the amplitude
+$n(t)$ and the delayed-neutron precursors. This reduction yields the point
+reactor kinetics equations of Chapter~\ref{ch:pk}. The approximation is excellent
+for compact cores responding coherently, and it is the workhorse of reactor
+dynamics. Its principal failure---when different regions of a large core behave
+differently---gives rise to the spatial instabilities of
+Chapter~\ref{ch:xenon}, and was a real complicating factor in the large RBMK core
+at Chernobyl, where the point picture understates the danger of an asymmetric,
+axially-peaked flux.
+
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Starting from $\keff=1.002$, compute the reactivity $\rho$ in pcm and in dollars (take $\beta=0.0065$).
+\item Using the six-factor formula, identify which factor the Doppler effect modifies and with what sign.
+\item Estimate the prompt growth rate $\rho_{\text{prompt}}/\Lambda$ for $\rho_{\text{prompt}}=0.003$ and $\Lambda=10^{-5}\,$s, and the corresponding e-folding time.
+\item Explain physically why voiding an over-moderated lattice raises the resonance escape probability $p$.
+\item Why does the point-kinetics approximation fail for large cores, and what phenomenon (Chapter 10) results?
+\end{enumerate}

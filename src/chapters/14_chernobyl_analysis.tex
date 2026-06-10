@@ -1,0 +1,141 @@
+\chapter{Chernobyl: Root-Cause Analysis}
+\label{ch:analysis}
+
+Why did Chernobyl happen, and what did the world conclude? The answer evolved
+significantly between 1986 and 1992, and the evolution is itself instructive: it is
+a case study in how the apportionment of blame between ``human error'' and
+``design flaw'' depends on how deeply one understands the machine. This chapter
+analyses the accident through the feedback theory of Parts~II and~III and traces
+the shift from INSAG-1 to INSAG-7.
+
+\section{The accident as a feedback failure}
+
+In the language of this book, Chernobyl was the failure of a closed-loop control
+system whose loop gain became positive. Recall the stability principle: a reactor
+is stable when rising temperature/power removes reactivity faster than it is added.
+At Chernobyl, in its low-power, low-ORM, distorted-flux state, three feedback
+elements all had the wrong sign or were too weak:
+
+\begin{itemize}[nosep]
+\item The \textbf{void coefficient} was strongly positive: rising power boiled
+water, which added reactivity (Chapters~\ref{ch:feedback},~\ref{ch:rbmk}).
+\item The \textbf{prompt Doppler feedback}, though negative, was too weak at low
+power to overcome the void term (the fuel-temperature swings at low power are
+small).
+\item The \textbf{scram}, intended as the ultimate negative reactivity, was
+momentarily \emph{positive} because of the graphite displacers (the positive scram
+effect).
+\end{itemize}
+
+With the dominant feedbacks positive, the Nyquist locus of Chapter~\ref{ch:linear}
+enclosed the critical point, and the Nordheim--Fuchs balance of
+Chapter~\ref{ch:nonlinear} had no benign turnover: there was no net negative
+prompt feedback to cap the excursion. The accident is, in this sense, exactly what
+the stability theory predicts for a machine with these coefficients driven into
+this regime. It was not an inexplicable catastrophe; it was the equations
+asserting themselves.
+
+\section{Contributing causes: a layered failure}
+
+No single fault caused the accident; it was a chain in which each link mattered.
+
+\textbf{Design causes.} The positive void coefficient, the positive scram effect
+of the graphite-tipped rods, the slow ($\sim 18\unit{s}$) shutdown, the large core
+prone to spatial flux distortion, and the lack of automatic enforcement of the
+ORM---all were properties of the machine.
+
+\textbf{Operational causes.} The test was conducted at far too low a power; the
+ORM was driven far below its minimum; protective trips were disabled; and the crew
+proceeded despite the reactor being in an unfamiliar and unstable state.
+
+\textbf{Organisational and cultural causes.} The positive scram effect was known
+from the 1983 Ignalina event but neither corrected nor communicated; operating
+documentation understated the danger of the low-ORM regime; the test procedure was
+inadequate and inadequately reviewed; and a safety culture that treated such
+margins as bureaucratic rather than physical allowed the boundary to be crossed.
+
+The deepest lesson of Chernobyl is precisely that these layers combined. A machine
+with the wrong sign of feedback can be operated safely \emph{only} if the
+operators rigorously avoid the regimes where that sign bites---and that requires
+the organisation to know, document, and enforce those boundaries. All three failed
+together.
+
+\section{From INSAG-1 to INSAG-7: the evolution of understanding}
+
+The International Nuclear Safety Advisory Group (INSAG) issued two major reports.
+
+\textbf{INSAG-1 (1986)}, drawing heavily on the initial Soviet presentation,
+emphasised \emph{operator error}: the violations of procedure---running at low
+power, defeating protections, depleting the ORM---were presented as the primary
+cause. This framing placed the weight of responsibility on the crew.
+
+\textbf{INSAG-7 (1992)}, after the Soviet authorities released fuller information
+(including the State Committee's and the Soviet scientists' own deeper analyses),
+substantially revised the picture. It emphasised \emph{design deficiencies}---the
+positive void coefficient and especially the positive scram effect---as root
+causes, while still acknowledging the operational violations. In INSAG-7's
+assessment, the operators were drawn into a trap that the reactor's physics and the
+inadequate information about it had set. Its often-quoted observation is that the
+conditions under which the positive scram effect would be dangerous were believed
+never to occur, yet ``appeared in almost every detail'' at Chernobyl.
+
+\begin{remark}[Why the shift matters]
+The movement from ``the operators broke the rules'' to ``the machine had flaws
+that made rule-breaking catastrophic, and the rules themselves were poorly
+justified to those who had to follow them'' is the central interpretive lesson of
+Chernobyl. It reframes safety from a matter of operator discipline alone to a
+matter of \emph{inherent design}: a reactor should not be one procedure violation
+away from prompt criticality, and its shutdown system should never add reactivity.
+Modern safety philosophy---inherent and passive safety, defence in depth, and a
+strong safety culture---descends directly from this reframing.
+\end{remark}
+
+\section{The fixes to the RBMK fleet}
+
+After the accident the surviving RBMK reactors were extensively modified to address
+the very feedback flaws this book has emphasised:
+\begin{itemize}[nosep]
+\item Fuel enrichment was increased (from $\sim 2\%$ toward $2.4\%$) and additional
+fixed absorbers were installed, which \emph{reduced the void coefficient} so that
+the power coefficient became negative across the operating range.
+\item The control rods were redesigned and the displacer geometry changed to
+\emph{eliminate the positive scram effect}, with faster insertion and a larger
+number of rods kept inserted.
+\item A hard minimum operating reactivity margin was enforced, with automatic
+protection, removing the low-ORM trap.
+\item Improved instrumentation and faster emergency protection were added.
+\end{itemize}
+These changes did not make the RBMK a Western-style reactor, but they removed the
+specific positive-feedback pathways that caused the accident---an implicit
+confirmation that those pathways were indeed the root cause.
+
+\section{Comparison with Western practice}
+
+It is worth stating plainly the contrast that makes Chernobyl so instructive.
+Western light-water reactors are designed with a \emph{negative} void coefficient
+and a \emph{negative} power coefficient, achieved by under-moderation; their
+shutdown systems insert only negative reactivity, quickly; and their containment
+buildings are designed to retain radioactivity even given core damage---a feature
+the RBMK lacked. The same reactivity-insertion event that destroyed Chernobyl would
+be self-limited in a PWR by its prompt negative feedback (the BORAX/SPERT result),
+and any residual release would be contained. Chernobyl is thus simultaneously a
+story about one flawed design and a vindication of the inherent-safety principles
+embodied in others.
+
+\keypoint{Chernobyl was a feedback failure: in its operating state the dominant
+reactivity feedbacks were positive, so the coupled system was unstable and the
+prompt excursion had no benign limit. The understanding evolved from blaming
+operators (INSAG-1) to recognising design flaws---the positive void coefficient
+and positive scram effect---as root causes (INSAG-7). The enduring lesson is that
+safety must be inherent in the physics, not contingent on perfect operation.}
+
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Frame the accident as a feedback-loop failure using the language of Chapters 6--9.
+\item Summarise the differences between INSAG-1 and INSAG-7 and why the shift matters.
+\item List the design, operational, and organisational causes and argue why all three were necessary.
+\item Which post-accident RBMK modifications addressed the void coefficient, and how?
+\item Contrast the RBMK with a Western PWR on void coefficient, scram, and containment.
+\end{enumerate}

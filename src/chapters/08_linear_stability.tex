@@ -1,0 +1,141 @@
+\chapter{Linear Stability and Frequency-Domain Methods}
+\label{ch:linear}
+
+Stability is, in the first instance, a question about \emph{small} perturbations:
+does a tiny disturbance grow or decay? This is the domain of linear stability
+analysis. We linearise the coupled model, introduce the zero-power and
+feedback transfer functions, and apply the Nyquist criterion, which handles the
+transport delays of real reactors more gracefully than eigenvalues alone.
+
+\section{Linearisation about an operating point}
+
+Let the reactor sit at steady power $p_0$ with steady temperatures, and perturb:
+$p=p_0+\delta p$, $\zeta_i=\zeta_{i0}+\delta\zeta_i$, $\Tf=\Tf^0+\delta\Tf$, and
+so on. Substituting into the coupled equations of Chapter~\ref{ch:coupled} and
+discarding products of small quantities gives a linear system
+\begin{equation}
+\frac{\dd}{\dd t}\,\delta\mathbf{x} = \mathbf{A}\,\delta\mathbf{x}
+   + \mathbf{b}\,\delta\rho_{ext},
+\end{equation}
+where $\delta\mathbf{x}=(\delta p,\delta\zeta_1,\dots,\delta\zeta_6,
+\delta\Tf,\delta\Tc)^{\!\top}$. The crucial linearised coupling is in the power
+equation: the term $(\rho-\beta)p/\Lambda$ contributes
+$p_0\,\delta\rho/\Lambda$, and $\delta\rho = \alpha_D\,\delta\Tf +
+\alpha_c\,\delta\Tc$. Thus the feedback coefficients enter $\mathbf A$ multiplied
+by $p_0/\Lambda$: \emph{feedback is more potent at higher power}, an observation
+with direct bearing on why the RBMK was most dangerous at low power.
+
+The operating point is asymptotically stable if and only if every eigenvalue of
+$\mathbf A$ has negative real part. For the bare point-kinetics block (no
+feedback) the eigenvalues are exactly the inhour roots of
+Chapter~\ref{ch:pk}; adding negative feedback pushes the dominant root further
+into the left half-plane (more stable), while positive feedback pulls it toward,
+and possibly across, the imaginary axis (instability).
+
+\section{The zero-power transfer function}
+
+Frequency-domain analysis is more illuminating for systems with delays. Laplace
+transform the point kinetics about $p_0$ with input $\delta\rho$ and output
+$\delta p/p_0$; eliminating the precursors gives the \textbf{zero-power reactor
+transfer function}
+\begin{equation}
+Z(s) = \frac{\delta p/p_0}{\delta\rho}
+     = \frac{1}{\,\Lambda s + \displaystyle\sum_{i}\frac{\beta_i s}{s+\lambda_i}\,}.
+\label{eq:zpr}
+\end{equation}
+Its denominator is exactly the inhour function \eqref{eq:inhour}; its poles are
+the inhour roots. The name ``zero-power'' signals that no thermal feedback is
+included: it is the open-loop response of the neutronics alone. At low frequency
+$Z(s)$ behaves like an integrator with a long effective time constant set by the
+precursors; at high frequency $Z(s)\to 1/(\Lambda s)$, the fast prompt response.
+The transition between these regimes, around the delayed-neutron frequencies, is
+where the reactor's dynamic character lives.
+
+\section{Closing the loop: the feedback transfer function}
+
+Let the feedback path have transfer function $H(s)$ relating a power perturbation
+to the feedback reactivity it produces, $\delta\rho_{fb}=-H(s)\,\delta p/p_0$
+(the minus sign for negative feedback). For a single lumped fuel node with
+coefficient $\alpha_D<0$ and thermal time constant $\tau_f$,
+\begin{equation}
+H(s) = \frac{|\alpha_D|\,K}{1+\tau_f s},
+\end{equation}
+a first-order lag: fast feedback at low frequency, attenuated and phase-lagged at
+high frequency. The closed-loop transfer function from external reactivity to
+power is
+\begin{equation}
+G(s) = \frac{Z(s)}{1 + Z(s)H(s)},
+\end{equation}
+and stability is governed by the roots of the characteristic equation
+$1+Z(s)H(s)=0$. The product $Z(s)H(s)$ is the \emph{open-loop gain}; everything
+hinges on its behaviour.
+
+\section{The Nyquist criterion}
+
+The Nyquist criterion reads stability directly off a plot of the open-loop gain
+$Z(j\omega)H(j\omega)$ as $\omega$ runs over all frequencies. The closed loop is
+stable provided the Nyquist locus does not encircle the critical point $-1$ in the
+complex plane. Physically, encirclement of $-1$ means there is a frequency at
+which the feedback, after its phase lag, returns \emph{in phase} with the
+disturbance and with gain exceeding unity---positive feedback at that frequency,
+hence growth.
+
+This is where \emph{phase lag} becomes dangerous even for nominally negative
+feedback. If the feedback is negative at zero frequency but accumulates enough
+phase lag (from thermal transport delays, coolant transit, etc.) that at some
+frequency it is delayed by half a cycle, it acts as \emph{positive} feedback at
+that frequency. If the loop gain there exceeds one, the reactor oscillates with
+growing amplitude. Boiling-water reactors, with their void feedback transported
+by the coolant, are the classic example: they can exhibit lightly damped or even
+growing power--flow oscillations under certain low-flow, high-power conditions,
+and operating limits are drawn specifically to keep the decay ratio safely below
+one.
+
+\begin{definition}[Decay ratio]
+The decay ratio is the ratio of the amplitudes of two successive peaks of an
+oscillatory response to a perturbation. A decay ratio below $1$ indicates a
+damped, stable response; equal to $1$ marks the stability boundary; above $1$ the
+oscillation grows. BWR stability is monitored and licensed in these terms,
+typically with a limit well below unity.
+\end{definition}
+
+\section{Gain and phase margins}
+
+The robustness of stability is quantified by the \emph{gain margin} (how much the
+loop gain could increase before the locus reaches $-1$) and the \emph{phase
+margin} (how much additional phase lag could be tolerated). A reactor designed for
+inherent stability carries comfortable margins so that variations over the fuel
+cycle, across power levels, and under off-normal conditions never erode stability.
+The RBMK at low power had, in effect, negative margins in the relevant
+configuration: its dominant feedback was positive, so no amount of phase
+bookkeeping could save it---the locus enclosed $-1$ outright.
+
+\section{Power dependence and the low-power trap}
+
+Because feedback enters the loop gain multiplied by $p_0$, a reactor's stability
+character changes with power. A \emph{positive}-feedback reactor like the RBMK is
+most unstable at \emph{low} power: there the steam void fraction is small and most
+sensitive, so the void coefficient is largest, while the prompt Doppler feedback
+(which scales with the fuel-temperature changes that low power barely produces) is
+weakest. The result is a window of operation---low power, high positive void
+worth, depleted control margin---in which the machine is acutely unstable. The
+Chernobyl test drove the reactor straight into that window.
+
+\keypoint{Linear stability is decided by the eigenvalues of the linearised
+system, or equivalently by whether the Nyquist locus of the open-loop gain
+$Z(s)H(s)$ encircles $-1$. Negative feedback with small phase lag keeps the locus
+clear; positive feedback, or negative feedback with excessive transport lag, can
+enclose $-1$ and produce growing oscillations or divergence. Stability margins
+must hold across all power levels and cycle conditions---a requirement the RBMK
+violated at low power.}
+
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Write the zero-power transfer function \eqref{eq:zpr} and identify its poles.
+\item State the Nyquist stability criterion and interpret encirclement of $-1$ physically.
+\item Explain how phase lag can turn nominally negative feedback into destabilising feedback at some frequency.
+\item Define the decay ratio and state the stability condition in terms of it.
+\item Explain why a positive-feedback reactor is most unstable at low power.
+\end{enumerate}

@@ -1,0 +1,100 @@
+\chapter{Reactor Control, Period, and Protection Systems}
+\label{ch:control}
+
+Stability theory tells us how a reactor responds to disturbances; control and
+protection systems are how engineers ensure the reactor stays within the stable,
+safe envelope and is shut down if it strays. This chapter connects the dynamics of
+the previous chapters to the practical machinery of reactivity control, period
+measurement, and emergency protection---and shows precisely which of these
+safeguards were defeated or flawed at Chernobyl.
+
+\section{Means of reactivity control}
+
+Reactivity is adjusted by several means with very different speeds and purposes.
+\textbf{Control rods}---neutron absorbers (boron carbide, hafnium, silver-indium-cadmium)
+---provide fast, localised, and reliable control; they are the primary means of
+prompt shutdown. \textbf{Soluble chemical shim}---boric acid dissolved in the
+coolant of a PWR---provides slow, spatially uniform control of the large, slow
+reactivity changes of fuel burnup and xenon. \textbf{Burnable poisons}---fixed
+absorbers that deplete with irradiation---offset the excess reactivity of fresh
+fuel. The art of control is to match each tool to the timescale of the reactivity
+change it must counter.
+
+\section{Rod worth and the integral/differential curves}
+
+The reactivity inserted by a control rod depends nonlinearly on its position
+because it is proportional to the local flux-squared (the rod removes neutrons in
+proportion to the flux, and is most effective where the flux is highest---near the
+core centre). The \emph{differential rod worth} $\dd\rho/\dd z$ is therefore
+largest near mid-core and small at the ends, and the \emph{integral worth}
+$\rho(z)$ is the characteristic S-shaped curve. Two consequences matter for
+stability. First, a rod moving through the high-worth central region inserts
+reactivity rapidly---a hazard if withdrawn carelessly. Second, the axial flux
+shape determines where a rod's worth lies; in the RBMK, with the flux skewed to the
+bottom of the core, the bottom-entering graphite displacers acted exactly where the
+flux---and hence the harmful positive insertion---was concentrated.
+
+\section{The reactor period and its measurement}
+
+The reactor period $T=1/s$ (Chapter~\ref{ch:pk}) is the most direct measure of how
+fast power is changing. Operators and protection systems monitor the period with
+\emph{period meters} (or the equivalent ``startup rate'' in decades per minute). A
+short period is an alarm: protection systems trip the reactor if the period falls
+below a set limit (e.g.\ a few seconds), because a short period signals approach to
+dangerous reactivity. The inhour equation links the period directly to reactivity,
+so a period-meter is, in effect, a real-time reactivity gauge. Period-based trips
+are a first line of defence against reactivity excursions---though against a
+prompt-critical insertion, the period collapses faster than any trip can act, which
+is why \emph{inherent} prompt feedback, not protection, is the true safeguard at
+that extreme.
+
+\section{Protection systems and defence in depth}
+
+The reactor protection system (RPS) monitors many variables---neutron flux, rate
+of change (period), coolant temperature, pressure, flow, and water level---and
+initiates an automatic scram when any exceeds a safe limit. The design philosophy
+is \emph{defence in depth}: multiple independent, redundant, and diverse barriers,
+so that no single failure (and ideally no plausible combination) leads to harm.
+A protection system is engineered to be \emph{fail-safe}: loss of power or signal
+drives the rods in, not out.
+
+\begin{remark}[Defeated protections at Chernobyl]
+The Chernobyl test required, and the operators implemented, the deliberate
+\emph{disabling} of several automatic protections---including the trip on turbine
+stop and certain emergency-cooling and flux signals---so that the test would not be
+interrupted. Defeating protections is sometimes necessary for testing, but it
+removes the very defence-in-depth barriers that exist to catch the unexpected.
+Combined with operation in an unstable regime, it left the reactor with neither
+inherent stability nor engineered protection. The single remaining safeguard---the
+AZ-5 scram---was itself flawed by the positive scram effect. Every layer of defence
+had been removed or inverted.
+\end{remark}
+
+\section{The speed problem}
+
+A recurring theme is the mismatch between the timescales of protection and of a
+prompt excursion. Mechanical scram---unlatching rods and letting them fall or drive
+in---takes on the order of one to a few seconds in a fast modern system, and was
+about $18\unit{s}$ for full insertion in the RBMK. A delayed-critical transient
+($\rho<\beta$) evolves over seconds and can be caught. A prompt-critical transient
+($\rho>\beta$) evolves over milliseconds and cannot. This is why the design
+objective is to make prompt criticality \emph{unreachable} by normal means and to
+ensure that the prompt feedback is negative: protection systems guard the
+delayed-critical regime, but only physics guards the prompt regime.
+
+\keypoint{Control and protection systems keep a reactor within its stable envelope
+and shut it down if it strays---but they act on the delayed-neutron timescale of
+seconds. Against a prompt-critical excursion, only inherent prompt negative
+feedback is fast enough. At Chernobyl the protections were disabled, the one
+remaining scram was flawed, and the inherent feedback was positive: defence in
+depth had been hollowed out at every layer.}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Distinguish control rods, soluble shim, and burnable poisons by speed and purpose.
+\item Sketch the integral and differential rod-worth curves and explain their shape.
+\item Why does a short reactor period trigger a protective scram, and why is this useless against a prompt-critical insertion?
+\item Define defence in depth and explain how it was hollowed out at Chernobyl.
+\item Explain the fail-safe principle for a reactor protection system.
+\end{enumerate}
