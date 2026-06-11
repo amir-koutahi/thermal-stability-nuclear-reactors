@@ -74,7 +74,3 @@ produced with the author's open-source point-kinetics toolkit,
 The text and figures are released under
 **[Creative Commons Attribution 4.0 (CC BY 4.0)](LICENSE)**. You may share and
 adapt the material with attribution.
-
-> **Disclaimer.** This is an educational and historical treatment of reactor
-> dynamics and safety. It is *not* a design specification, operating procedure, or
-> safety-analysis document, and must not be used as one.
