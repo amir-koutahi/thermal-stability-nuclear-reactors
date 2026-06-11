@@ -1,6 +1,6 @@
 # Thermal Stability of Nuclear Reactors
 
-**A 101-page technical monograph** on coupled neutronic–thermal reactor dynamics,
+**A technical monograph** on coupled neutronic–thermal reactor dynamics,
 stability theory, and the historical lessons of the Chernobyl accident.
 
 📄 **[Read the PDF »](thermal-stability-of-nuclear-reactors.pdf)**
